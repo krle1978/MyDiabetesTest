@@ -1,0 +1,75 @@
+{
+    "youngest_diabetic": {
+        "Pregnancies": 0.0,
+        "Glucose": 177.0,
+        "BloodPressure": 60.0,
+        "SkinThickness": 29.0,
+        "Insulin": 478.0,
+        "BMI": 34.6,
+        "DiabetesPedigreeFunction": 1.072,
+        "Age": 21.0,
+        "Outcome": 1.0
+    },
+    "oldest_diabetic": {
+        "Pregnancies": 8.0,
+        "Glucose": 181.0,
+        "BloodPressure": 68.0,
+        "SkinThickness": 36.0,
+        "Insulin": 495.0,
+        "BMI": 30.1,
+        "DiabetesPedigreeFunction": 0.615,
+        "Age": 60.0,
+        "Outcome": 1.0
+    },
+    "highest_bmi": {
+        "Pregnancies": 0.0,
+        "Glucose": 129.0,
+        "BloodPressure": 110.0,
+        "SkinThickness": 46.0,
+        "Insulin": 130.0,
+        "BMI": 67.1,
+        "DiabetesPedigreeFunction": 0.319,
+        "Age": 26.0,
+        "Outcome": 1.0
+    },
+    "highest_glucose": {
+        "Pregnancies": 0.0,
+        "Glucose": 198.0,
+        "BloodPressure": 66.0,
+        "SkinThickness": 32.0,
+        "Insulin": 274.0,
+        "BMI": 41.3,
+        "DiabetesPedigreeFunction": 0.502,
+        "Age": 28.0,
+        "Outcome": 1.0
+    },
+    "highest_insulin": {
+        "Pregnancies": 1.0,
+        "Glucose": 189.0,
+        "BloodPressure": 60.0,
+        "SkinThickness": 23.0,
+        "Insulin": 846.0,
+        "BMI": 30.1,
+        "DiabetesPedigreeFunction": 0.398,
+        "Age": 59.0,
+        "Outcome": 1.0
+    },
+    "average_stats": [
+        {
+            "Outcome": 0,
+            "Age": 28.354716981132075,
+            "BMI": 31.610943396226414,
+            "Glucose": 111.10566037735849,
+            "Insulin": 130.3245283018868,
+            "Pregnancies": 2.69811320754717
+        },
+        {
+            "Outcome": 1,
+            "Age": 36.045801526717554,
+            "BMI": 35.70229007633588,
+            "Glucose": 145.2290076335878,
+            "Insulin": 206.18320610687022,
+            "Pregnancies": 4.450381679389313
+        }
+    ]
+}
