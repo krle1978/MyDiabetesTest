@@ -1,0 +1,30 @@
+.profile {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.profile img {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #03f803;
+}
+
+.profile-text {
+    flex: 1;
+    text-align: left; /* <<< sada levo poravnanje */
+}
+
+.profile-text h3 {
+    margin: 0 0 10px 0;
+    color: #03f803;
+    font-size: 1.4em;
+}
+
+
+.profile pre {
+    white-space: pre-wrap;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
