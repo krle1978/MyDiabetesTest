@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charts</title>
-    <link rel="stylesheet" href="style.css"> <!-- Povezivanje sa zajedničkim CSS fajlom -->
+    <link rel="stylesheet" href="style.css"> <!-- glavni CSS -->
+    <link rel="stylesheet" href="charts.css"> <!-- specijalni CSS za charts -->
 </head>
 <body>
     <h1>Charts</h1>
@@ -14,9 +15,9 @@
         <ul class="menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="charts/statistics.html">Statistics</a></li>
-            <li><a href="charts.html">Charts</a></li> <!-- Novi link za Charts -->
-            <li><a href="pacijent.html">Patient</a></li> <!-- Dugme za Pacijenta -->
-            <li><a href="recepti.html">Recipes</a></li> <!-- Novi link za Recepti -->
+            <li><a href="charts.html">Charts</a></li>
+            <li><a href="pacijent.html">Patient</a></li>
+            <li><a href="recepti.html">Recipes</a></li>
         </ul>
         <img 
             src="./pics/diabetes_logo.jpg" 
@@ -26,41 +27,23 @@
         >
     </nav>
 
-    
     <h2>Select a chart</h2>
     
     <div>
         <label for="chart-select">Select a chart:</label>
         <select id="chart-select">
-            <option value="probability_distribution.png">Disease probability distribution</option>
-            <option value="outcome_distribution.png">Proportion of sick and healthy users</option>
-            <option value="bmi_glucose_scatter.png">BMI vs. Glucose</option>
-            <option value="avg_bmi_by_age_group.png">Average BMI by age group</option>
-            <option value="insulin_glucose_scatter.png">Insulin vs. Glucose</option>
-            <option value="age_distribution.png">Age group distribution</option>
-            <option value="correlation_matrix.png">Correlation matrix</option>
-            <option value="probability_by_age_group.png">Disease probabilities by age group</option>
+            <option value="dataset">Data set layout</option>
+            <option value="impact">Impact of other diseases</option>
+            <option value="extreme">Extreme cases</option>
         </select>
     </div>
 
-    <div id="chart-container">
-        <img id="chart-image" src="charts/probability_distribution.png" alt="Chart">
-    </div>
+    <div id="chart-container"></div>
+
     <footer class="footer">
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
 
-    <script>
-        // JavaScript za promenu grafikona na osnovu selektovanog
-        document.getElementById('chart-select').addEventListener('change', function() {
-            var chartPath = 'charts/' + this.value;
-            document.getElementById('chart-image').src = chartPath;
-        });
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('open'); // Dodaje/uklanja klasu "open"
-        }
-        
-    </script>
+    <script src="./js/charts.js"></script>
 </body>
 </html>
