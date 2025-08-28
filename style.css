@@ -528,27 +528,58 @@ select.recipe-combo {
 }
 
 /* Meni za male ekrane */
+/* Osnovni meni (desktop) */
 .menu {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+/* Kad je otvoren na mobilnom */
 .menu.open {
-    display: block; /* Prikaz menija kada je otvoren */
+    display: flex;
+    flex-direction: column;   /* Pretvori u listu */
+    align-items: center;      /* Centriraj stavke */
+    gap: 10px;                /* Razmak između linkova */
+    padding: 10px 0;
 }
 
+/* Hamburger i meni za mobilne */
 @media (max-width: 768px) {
     .hamburger {
-        display: block; /* Prikazujemo dugme na manjim ekranima */
+        display: block; /* Pojavljuje se burger dugme */
     }
 
     .menu {
-        display: none; /* Sakrivamo meni dok nije otvoren */
-        flex-direction: column;
-        align-items: center;
+        display: none; /* Po difoltu skriven meni */
+    }
+
+    .menu.open {
+        display: flex; /* Otvori se na klik */
+    }
+
+    .menu li {
+        display: block; /* Svaki <li> u novom redu */
+        margin: 5px 0;
+    }
+
+    .menu li a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #093d59;
+        border-radius: 5px;
+        text-align: center;
+        width: 100%;       /* Puni red na mobilnom */
+        max-width: 300px;  /* Da ne ide do ivice ekrana */
+    }
+
+    .menu li a:hover {
+        background-color: #1d5f7b;
+        color: #ffffff;
     }
 }
+
 
 /* Navigacija sa leve strane za recepte */
 .recipe-nav {

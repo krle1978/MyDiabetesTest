@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charts</title>
     <link rel="stylesheet" href="style.css"> <!-- glavni CSS -->
-    <link rel="stylesheet" href="charts.css"> <!-- specijalni CSS za charts -->
+    <link rel="stylesheet" href="charts.css"> <!-- dodatni CSS za charts -->
 </head>
 <body>
     <h1>Charts</h1>
-    <!-- Navigaciona lajsna -->
-    <nav>
+
+    <!-- Navigacija na vrhu -->
+    <nav class="top-nav">
         <button class="hamburger" onclick="toggleMenu()">☰</button>
         <ul class="menu">
             <li><a href="index.html">Home</a></li>
@@ -29,7 +30,7 @@
 
     <h2>Select a chart</h2>
     
-    <div>
+    <div class="chart-select-container">
         <label for="chart-select">Select a chart:</label>
         <select id="chart-select">
             <option value="dataset">Data set layout</option>
