@@ -4,17 +4,20 @@ let scaler = null;
 
 // === Učitaj Random Forest model i Scaler ===
 async function loadModelAndScaler() {
-    // Učitaj Random Forest model
-    const resModel = await fetch("model/random_forest_model.json");
-    if (!resModel.ok) throw new Error("Greška prilikom učitavanja modela.");
-    model = await resModel.json();
+    try {
+        const resModel = await fetch("model/random_forest_model.json");
+        if (!resModel.ok) throw new Error("Greška prilikom učitavanja modela.");
+        model = await resModel.json();
 
-    // Učitaj Scaler
-    const resScaler = await fetch("model/scaler.json");
-    if (!resScaler.ok) throw new Error("Greška prilikom učitavanja scaler-a.");
-    scaler = await resScaler.json();
+        const resScaler = await fetch("model/scaler.json");
+        if (!resScaler.ok) throw new Error("Greška prilikom učitavanja scaler-a.");
+        scaler = await resScaler.json();
 
-    console.log("✅ Model i scaler uspešno učitani");
+        console.log("✅ Model i scaler uspešno učitani");
+    } catch (err) {
+        console.error(err);
+        alert("Ne mogu da učitam model i scaler. Proverite putanje.");
+    }
 }
 
 // === Skaliranje podataka ===
@@ -23,68 +26,86 @@ function scaleInput(inputArray) {
     return inputArray.map((x, i) => (x - scaler.mean[i]) / scaler.scale[i]);
 }
 
-// === Random Forest predikcija ===
-function predikcijaRF(ulaz, model) {
+// === Random Forest predikcija sa procentom rizika ===
+function predikcijaRFProcent(ulaz, model) {
     let glasovi = Array(model.classes.length).fill(0);
 
     for (const drvo of model.trees) {
         let cvor = 0;
-
-        // Prolazak kroz stablo dok ne dođemo do lista
         while (drvo.feature[cvor] !== -2) { // -2 = leaf
             const feature = drvo.feature[cvor];
             const threshold = drvo.threshold[cvor];
-
-            if (ulaz[feature] <= threshold) {
-                cvor = drvo.children_left[cvor];
-            } else {
-                cvor = drvo.children_right[cvor];
-            }
+            cvor = ulaz[feature] <= threshold ? drvo.children_left[cvor] : drvo.children_right[cvor];
         }
-
-        // Glasanje klase na leaf čvoru
-        const vrednosti = drvo.value[cvor]; 
+        const vrednosti = drvo.value[cvor];
         const predClass = vrednosti.indexOf(Math.max(...vrednosti));
         glasovi[predClass]++;
     }
 
-    return glasovi.indexOf(Math.max(...glasovi));
+    const ukupno = glasovi.reduce((a,b)=>a+b,0);
+    const rizikProcent = (glasovi[1]/ukupno) * 100; // klasa 1 = dijabetes
+    return rizikProcent;
 }
 
-// === Glavna predikcija ===
-async function predvidiDijabetes(podaciKorisnika) {
-    if (!model || !scaler) {
-        throw new Error("Model i scaler nisu učitani!");
+// === Preporuke na osnovu procenta rizika ===
+function preporukePoRiziku(rizik) {
+    let mere = [];
+
+    if (rizik < 20) {
+        mere.push("✅ Održavajte zdravu ishranu.");
+        mere.push("✅ Redovno vežbajte i održavajte fizičku aktivnost.");
+        mere.push("✅ Posetite lekara po rasporedu, kontrola jednom godišnje.");
+    } else if (rizik < 50) {
+        mere.push("⚠️ Povećajte unos povrća i voća, smanjite šećer i masnoće.");
+        mere.push("⚠️ Vežbajte najmanje 30 minuta dnevno.");
+        mere.push("⚠️ Posetite lekara za osnovne preglede i laboratorijske analize.");
+    } else {
+        mere.push("❌ Hitno smanjite unos šećera i masnoća, držite zdrav BMI.");
+        mere.push("❌ Intenzivna fizička aktivnost 4-5 puta nedeljno, pod nadzorom.");
+        mere.push("❌ Posetite lekara radi detaljnih testova i konsultacija.");
     }
 
-    // 1. Skaliraj podatke
+    return mere;
+}
+
+// === Glavna predikcija sa procentom i preporukama ===
+async function predvidiDijabetesSaPreporukama(podaciKorisnika) {
+    if (!model || !scaler) throw new Error("Model i scaler nisu učitani!");
+
     const scaledInput = scaleInput(podaciKorisnika);
+    const rizikProcent = predikcijaRFProcent(scaledInput, model);
 
-    // 2. Uradi predikciju pomoću Random Forest modela
-    const klasa = predikcijaRF(scaledInput, model);
+    const mere = preporukePoRiziku(rizikProcent);
 
-    return klasa === 1 ? "⚠️ HIGH RISK of diabetes" : "✅ LOW RISK of diabetes";
+    return {
+        procentRizika: rizikProcent.toFixed(2),
+        mere
+    };
 }
 
 // === Kada se stranica učita ===
-window.onload = async () => {
+window.addEventListener("DOMContentLoaded", async () => {
     await loadModelAndScaler();
+    predictBtn.disabled = true;
+    await loadModelAndScaler();
+    predictBtn.disabled = false;
 
-    const predictBtn = document.getElementById("predictBtn");
+
+    //const predictBtn = document.getElementById("predictBtn");
     if (!predictBtn) return;
 
     predictBtn.addEventListener("click", async () => {
         try {
-            // BMI računamo iz weight i height
+            console.log("Button click!");
             const weight = parseFloat(document.getElementById("weight").value);
-            const height = parseFloat(document.getElementById("height").value) / 100; // cm → m
+            const height = parseFloat(document.getElementById("height").value) / 100; 
             const bmi = weight / (height * height);
 
-            // Prikupljanje svih input vrednosti u istom redu kao u trening setu
             const podaciKorisnika = [
                 parseInt(document.getElementById("highBP").value),
                 parseInt(document.getElementById("highChol").value),
                 parseInt(document.getElementById("cholCheck").value),
+                bmi,
                 parseInt(document.getElementById("smoker").value),
                 parseInt(document.getElementById("stroke").value),
                 parseInt(document.getElementById("heartDisease").value),
@@ -101,21 +122,33 @@ window.onload = async () => {
                 parseInt(document.getElementById("sex").value),
                 parseInt(document.getElementById("age").value),
                 parseInt(document.getElementById("education").value),
-                parseInt(document.getElementById("income").value),
-                bmi // poslednji feature
+                parseInt(document.getElementById("income").value)
             ];
 
-            // Predikcija
-            const rezultat = await predvidiDijabetes(podaciKorisnika);
+             // --- DEBUG LOG ---
+            console.log("Podaci korisnika:", podaciKorisnika);
+            console.log("Model feature count:", model.trees[0].feature.length);
+            console.log("Scaler mean count:", scaler.mean.length);
+            // --- END DEBUG ---
 
-            // Ispis rezultata
+            const rezultat = await predvidiDijabetesSaPreporukama(podaciKorisnika);
+
             const resultEl = document.getElementById("result-text") || document.getElementById("result");
-            if (resultEl) resultEl.innerText = rezultat;
-            else alert(rezultat);
+            if (resultEl) {
+                resultEl.innerHTML = `
+                    ⚠️ Procena rizika: <b>${rezultat.procentRizika}%</b><br>
+                    <b>Preporuke:</b><br>
+                    <ul>
+                        ${rezultat.mere.map(m => `<li>${m}</li>`).join("")}
+                    </ul>
+                `;
+            } else {
+                alert(`Rizik: ${rezultat.procentRizika}%\nMere:\n${rezultat.mere.join("\n")}`);
+            }
 
         } catch (error) {
             console.error("Prediction failed:", error);
             alert("Došlo je do greške prilikom predikcije. Pokušajte ponovo.");
         }
     });
-};
+});

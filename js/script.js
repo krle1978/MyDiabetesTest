@@ -1,36 +1,10 @@
-// Error handling wrapper
-(function() {
-    // Silence Chrome extension errors
-    if (typeof chrome !== 'undefined' && chrome.runtime) {
-        try { chrome.runtime.lastError; } catch(e) {}
-    }
-
-    // Main application code
-    document.addEventListener('DOMContentLoaded', function() {
-        try {
-            // Your existing initialization code
-            console.log("Application initialized successfully");
-            
-            // Hamburger menu toggle
-            function toggleMenu() {
-                const menu = document.querySelector('.menu');
-                if (menu) menu.classList.toggle('open');
-            }
-            
-            // Assign to global scope if needed
-            window.toggleMenu = toggleMenu;
-            
-        } catch (error) {
-            console.error("Initialization error:", error);
-        }
-    });
-})();
-// Add this to your script.js
+// Error handling wrapper da se ućutkaju Chrome ekstenzije
 window.addEventListener('error', function(e) {
     if (e.message.includes('runtime.lastError')) {
         e.preventDefault();
     }
 });
+
 // Funkcija za bezbedno postavljanje teksta
 function safeSetText(elementId, text) {
     const element = document.getElementById(elementId);
@@ -52,7 +26,6 @@ function loadData(type) {
         })
         .then(data => {
             try {
-                // Prikaz statistika sa proverom postojanja polja
                 safeSetText('youngest', 
                     `Najmlađa osoba obolela od dijabetesa: Age ${data.youngest_diabetic?.Age || 'N/A'}, BMI ${data.youngest_diabetic?.BMI || 'N/A'}`);
                 
@@ -68,7 +41,7 @@ function loadData(type) {
                 safeSetText('highest_insulin', 
                     `Osoba sa najvećim nivoom insulina: Insulin ${data.highest_insulin?.Insulin || 'N/A'}, Age ${data.highest_insulin?.Age || 'N/A'}`);
 
-                // Popuni tabelu sa proverom
+                // Popuni tabelu
                 const tableBody = document.querySelector('#resultsTable tbody');
                 if (tableBody && Array.isArray(data.data)) {
                     tableBody.innerHTML = '';
@@ -91,11 +64,10 @@ function loadData(type) {
         .catch(error => {
             console.error('Greška pri učitavanju podataka:', error);
             safeSetText('youngest', 'Greška pri učitavanju podataka');
-            // Postavite default vrednosti za ostale elemente po potrebi
         });
 }
 
-// Funkcija za ažuriranje grafikona sa proverama
+// Funkcija za ažuriranje grafikona
 function updateChart() {
     try {
         const chartSelect = document.getElementById('chart-select');
@@ -111,26 +83,7 @@ function updateChart() {
     }
 }
 
-// Inicijalizacija aplikacije
-function initApp() {
-    try {
-        // Provera da li postoji element za grafikon
-        const chartSelect = document.getElementById('chart-select');
-        if (chartSelect) {
-            updateChart();
-            chartSelect.addEventListener('change', updateChart);
-        }
-
-        // Provera da li postoji tabela za podatke
-        if (document.querySelector('#resultsTable')) {
-            loadData('initial');
-        }
-    } catch (error) {
-        console.error('Greška pri inicijalizaciji aplikacije:', error);
-    }
-}
-
-// Hamburger meni sa proverom
+// Hamburger meni
 function toggleMenu() {
     try {
         const menu = document.querySelector('.menu');
@@ -142,13 +95,25 @@ function toggleMenu() {
     }
 }
 
-// Pokretanje aplikacije kada se stranica učita
-document.addEventListener('DOMContentLoaded', initApp);
+// Inicijalizacija aplikacije
+function initApp() {
+    console.log("Application initialized successfully");
 
-// Dodatne event listeners ako su potrebni
-document.addEventListener('DOMContentLoaded', () => {
+    //const chartSelect = document.getElementById('chart-select');
+    //if (chartSelect) {
+    //    updateChart();
+    //    chartSelect.addEventListener('change', updateChart);
+    //}
+
+    if (document.querySelector('#resultsTable')) {
+        loadData('initial');
+    }
+
     const hamburgerButton = document.querySelector('.hamburger');
     if (hamburgerButton) {
         hamburgerButton.addEventListener('click', toggleMenu);
     }
-});
+}
+
+// Pokretanje aplikacije kada se stranica učita
+document.addEventListener('DOMContentLoaded', initApp);

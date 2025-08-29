@@ -215,8 +215,3 @@ renderCharts("dataset");
 document.getElementById('chart-select').addEventListener('change', function() {
     renderCharts(this.value);
 });
-
-function toggleMenu() {
-    const menu = document.querySelector('.menu');
-    menu.classList.toggle('open');
-}

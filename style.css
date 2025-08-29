@@ -1,11 +1,18 @@
-/* Opšti stilovi za telo stranice */
+/* Globalni wrapper za padding sa leve i desne strane */
+.wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Ili alternativno, dodati padding direktno body elementu */
 body {
     font-family: Arial, sans-serif;
-    background-color: #1a1d2e; /* Tamnoplava pozadina */
-    color: #a2c2f2; /* Svetloplava boja teksta */
+    background-color: #1a1d2e;
+    color: #a2c2f2;
     margin: 0;
-    padding: 0;
+    padding: 0 20px; /* Dodato horizontalno odstojanje */
 }
+
 
 /* Globalni reset margina */
 * {
@@ -518,65 +525,62 @@ select.recipe-combo {
 }
 
 /* Hamburger dugme */
-.hamburger {
-    display: none;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    margin: 10px;
+nav.top-nav {
+    position: relative;
 }
 
-/* Meni za male ekrane */
-/* Osnovni meni (desktop) */
+.hamburger {
+    display: none;           /* Prikazuje se kao blok element */
+    color: #4CAF50;           /* Zelena boja */
+    font-size: 2em;           /* Slično h2 veličini */
+    text-align: center;       /* Centriranje teksta unutar dugmeta */
+    background: none;         /* Bez pozadine */
+    border: none;             /* Bez ivica */
+    cursor: pointer;          /* Pokazuje da je klikabilno */
+    margin: 0 auto;           /* Centriranje dugmeta horizontalno */
+}
+
+
+/* Desktop meni */
 .menu {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    list-style: none;
+    gap: 15px;
 }
 
-/* Kad je otvoren na mobilnom */
-.menu.open {
-    display: flex;
-    flex-direction: column;   /* Pretvori u listu */
-    align-items: center;      /* Centriraj stavke */
-    gap: 10px;                /* Razmak između linkova */
-    padding: 10px 0;
-}
-
-/* Hamburger i meni za mobilne */
+/* Prikaz hamburgera samo na mobilnim uređajima */
 @media (max-width: 768px) {
     .hamburger {
-        display: block; /* Pojavljuje se burger dugme */
+        display: block;
     }
 
     .menu {
-        display: none; /* Po difoltu skriven meni */
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        background-color: #072a3a;
+        padding: 10px 0;
+        z-index: 1000;
     }
 
     .menu.open {
-        display: flex; /* Otvori se na klik */
-    }
-
-    .menu li {
-        display: block; /* Svaki <li> u novom redu */
-        margin: 5px 0;
+        display: flex;
     }
 
     .menu li a {
         display: block;
         padding: 10px 20px;
-        font-size: 18px;
-        background-color: #093d59;
-        border-radius: 5px;
+        color: #03f803;
+        text-decoration: none;
         text-align: center;
-        width: 100%;       /* Puni red na mobilnom */
-        max-width: 300px;  /* Da ne ide do ivice ekrana */
     }
 
     .menu li a:hover {
         background-color: #1d5f7b;
-        color: #ffffff;
+        color: #fff;
     }
 }
 

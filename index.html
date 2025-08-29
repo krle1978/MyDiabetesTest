@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetes Charts</title>
+    <title>Diabetes</title>
+     <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1 id="main-title">Diabetes Data Analysis</h1>
     
-    <nav>
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="charts/statistics.html">Statistics</a></li>
-            <li><a href="charts.html">Charts</a></li> <!-- Novi link za Charts -->
-            <li><a href="pacijent.html">Patient</a></li> <!-- Dugme za Pacijenta -->
-            <li><a href="recepti.html">Recipes</a></li> <!-- Novi link za Recepti -->
-        </ul>
+   <nav class="top-nav">
+    <button class="hamburger">☰</button>
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="charts/statistics.html">Statistics</a></li>
+        <li><a href="charts.html">Charts</a></li>
+        <li><a href="pacijent.html">Patient</a></li>
+        <li><a href="recepti.html">Recipes</a></li>
+    </ul>
         <img 
-            src="./pics/diabetes_logo.jpg" 
+            src="pics/diabetes_logo.jpg" 
             alt="Language Switcher" 
             class="language-icon" 
             onclick="toggleLanguage()"
         >
     </nav>
     
-
-    <!-- Dodavanje statistika -->
     <div id="statistics">
         <h2 id="section-title">Diabetes</h2>
         <div>
@@ -53,6 +53,7 @@
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
     
-    <script src="./js/script.js"></script>
+    <!-- script mora na kraju, sa defer -->
+    <script src="js/script.js" defer></script>
 </body>
 </html>

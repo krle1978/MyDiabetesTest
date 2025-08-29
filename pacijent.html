@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline';
@@ -11,13 +12,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predikcija Dijabetesa</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mobile hamburger menu */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                right: 0;
+                background-color: #072a3a;
+                padding: 10px 0;
+                z-index: 1000;
+            }
+            .menu.open {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+                font-size: 24px;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        /* Risk result styles */
+        .risk-high { color: #ff4444; font-weight: bold; }
+        .risk-low { color: #4CAF50; font-weight: bold; }
+        .input-error { border-color: red !important; }
+    </style>
 </head>
 <body>
     <h1>Predikcija Dijabetesa</h1>
 
-    <!-- Navigacija na vrhu -->
+    <!-- Navigacija -->
     <nav class="top-nav">
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <button class="hamburger">☰</button>
         <ul class="menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="charts/statistics.html">Statistics</a></li>
@@ -25,12 +56,7 @@
             <li><a href="pacijent.html">Patient</a></li>
             <li><a href="recepti.html">Recipes</a></li>
         </ul>
-        <img 
-            src="./pics/diabetes_logo.jpg" 
-            alt="Language Switcher" 
-            class="language-icon" 
-            onclick="toggleLanguage()"
-        >
+        <img src="./pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon">
     </nav>
 
     <!-- Forma za unos podataka -->
@@ -161,30 +187,6 @@
                 <option value="13">80+</option>
             </select><br>
 
-            <!-- Education -->
-            <label for="education">Education Level:</label>
-            <select id="education" required>
-                <option value="1">Never attended school</option>
-                <option value="2">Elementary school (Grades 1–8)</option>
-                <option value="3">Some high school</option>
-                <option value="4">High school graduate</option>
-                <option value="5">Some college</option>
-                <option value="6">College graduate</option>
-            </select><br>
-
-            <!-- Income -->
-            <label for="income">Income Level:</label>
-            <select id="income" required>
-                <option value="1">Less than $10k</option>
-                <option value="2">$10k–$15k</option>
-                <option value="3">$15k–$20k</option>
-                <option value="4">$20k–$25k</option>
-                <option value="5">$25k–$35k</option>
-                <option value="6">$35k–$50k</option>
-                <option value="7">$50k–$75k</option>
-                <option value="8">≥ $75k</option>
-            </select><br>
-
             <button id="predictBtn" type="submit">Anticipate risk</button>
             <button type="button" id="reset-button">Reset</button>
         </form>
@@ -200,6 +202,8 @@
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
 
+    <!-- Skripte -->
+    <script src="js/script.js"></script> <!-- toggleMenu funkcija -->
     <script src="js/random_forest.js"></script>
     <script src="js/pacijent.js"></script>
 
