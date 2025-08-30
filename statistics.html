@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Statistics</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/statistics.css"> <!-- Novi CSS za statistiku -->
+</head>
+<body>
+    <!-- Navigacija -->
+    <nav class="top-nav">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="statistics.html" class="active">Statistics</a></li>
+            <li><a href="charts.html">Charts</a></li>
+            <li><a href="pacijent.html">Diabetes Prediction</a></li>
+            <li><a href="recepti.html">Recipes</a></li>
+        </ul>
+        <img src="pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
+    </nav>
+    
+    <!-- Glavni kontejner za statistiku -->
+    <div class="statistics-container">
+        <h1>Diabetes Data Statistics</h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-name">The youngest person with diabetes</div>
+                <div class="stat-value">21 years old</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">The oldest person with diabetes</div>
+                <div class="stat-value">82 years old</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">The person with the highest BMI suffered from diabetes</div>
+                <div class="stat-value">98.00</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">Average age of patients</div>
+                <div class="stat-value">63.87 years old</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">Average age of healthy people</div>
+                <div class="stat-value">56.01 years old</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">Average BMI patients</div>
+                <div class="stat-value">31.96</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-name">Average BMI healthy peopl</div>
+                <div class="stat-value">27.88</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
+    </footer>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

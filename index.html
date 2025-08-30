@@ -1,59 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetes</title>
-     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Landing Page</title>
+  <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1 id="main-title">Diabetes Data Analysis</h1>
-    
-   <nav class="top-nav">
+  <!-- Navigacija -->
+  <nav class="top-nav">
     <button class="hamburger">☰</button>
     <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="charts/statistics.html">Statistics</a></li>
-        <li><a href="charts.html">Charts</a></li>
-        <li><a href="pacijent.html">Patient</a></li>
-        <li><a href="recepti.html">Recipes</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="pacijent.html">Diabetes Prediction</a></li>
+      <li><a href="recepti.html">Recipes</a></li>
     </ul>
-        <img 
-            src="pics/diabetes_logo.jpg" 
-            alt="Language Switcher" 
-            class="language-icon" 
-            onclick="toggleLanguage()"
-        >
-    </nav>
-    
-    <div id="statistics">
-        <h2 id="section-title">Diabetes</h2>
-        <div>
-            <h3 id="ai-title">Using artificial intelligence in the prevention of diabetes</h3>
-            <p id="ai-text">Artificial intelligence (AI) provides revolutionary solutions in diabetes prevention. By analyzing data such as genetic factors, lifestyle and health history, AI systems can identify high-risk individuals. These tools help doctors make personalized recommendations for changes in diet, physical activity and health monitoring, thereby increasing the chance of avoiding the development of disease.</p>
-        </div>
-        <div>
-            <h3 id="risk-title">Most at risk from Diabetes</h3>
-            <p id="risk-text">Diabetes most often affects people who are overweight, older than 45 years, and those with a family history of the disease. Factors such as unhealthy diet, insufficient physical activity and chronic stress further increase the risk. People who suffer from hypertension and high cholesterol, as well as pregnant women who develop gestational diabetes, are particularly at risk.</p>
-        </div>
-        <div>
-            <h3 id="prevention-title">Recommendations on prevention</h3>
-            <p id="prevention-text">Prevention of diabetes involves a healthy lifestyle.</p>
-            <ul id="prevention-list">
-                <li><strong>Nutrition:</strong> Eat more fruits, vegetables, whole grains and low-fat proteins. Avoid processed foods, carbonated drinks and excessive intake of sugar and salt. Portion control and regular meals help keep blood sugar levels stable.</li>
-                <li><strong>Physical activity:</strong> Regular physical activity helps control body weight, improves insulin sensitivity and reduces the risk of diabetes. At least 150 minutes of moderate activity per week, such as brisk walking, swimming or cycling, is recommended. Include strength exercises for added benefit.</li>
-                <li><strong>Regular health monitoring:</strong> Controlling blood sugar, blood pressure and cholesterol levels should become a regular habit. Annual preventive examinations with a doctor allow early detection of risks. People with increased risk should monitor health parameters more often and react to changes immediately.</li>
-            </ul>
-        </div>
+    <img src="pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
+  </nav>
+
+  <!-- Hero sekcija -->
+  <section class="hero">
+    <div class="hero-text">
+        <h1>AI & Diabetes Prevention</h1>
+        <p>Artificial intelligence helps detect risk factors, improve lifestyle choices and prevent diabetes before it starts.</p>
+        <a href="pacijent.html" class="btn-primary">Predict My Diabetes</a>
     </div>
-    
+  </section>
+
+  <!-- Sekcija koja prelazi preko heroja -->
+  <section class="overlap-section">
+    <!-- Preview kartice -->
+    <section class="preview">
+      <h2>Explore the Platform</h2>
+      
+      <section class="cards-section">
+        <a href="statistics.html" class="card statistics">
+          <img src="pics/icons/statistics.svg" alt="Statistics Icon" class="card-icon">
+          <h2>Statistics</h2>
+        </a>
+
+        <a href="charts.html" class="card charts">
+          <img src="pics/icons/charts.svg" alt="Charts Icon" class="card-icon">
+          <h2>Charts</h2>
+        </a>
+
+        <a href="pacijent.html" class="card prediction">
+          <img src="pics/icons/prediction.svg" alt="Prediction Icon" class="card-icon">
+          <h2>Diabetes Prediction Test</h2>
+        </a>
+
+        <a href="recipes.html" class="card recipes">
+          <img src="pics/icons/recipes.svg" alt="Recipes Icon" class="card-icon">
+          <h2>Recipes</h2>
+        </a>
+      </section>
+    </section>
+
+    <!-- CTA sekcija -->
+    <section class="cta">
+      <h2>Take control of your health today</h2>
+      <a href="pacijent.html">Start Your Test</a>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
+      <p>&copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš</p>
     </footer>
-    
-    <!-- script mora na kraju, sa defer -->
-    <script src="js/script.js" defer></script>
+  </section>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

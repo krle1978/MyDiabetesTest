@@ -1,0 +1,437 @@
+/* ===================== GLOBAL RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===================== BODY ===================== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1d2e;
+    color: #a2c2f2;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===================== HERO (Landing page) ===================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../pics/HeroPic.png") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed; /* Fiksirana pozadina */
+    text-align: center;
+}
+
+/* Div oko teksta */
+.hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+}
+
+/* Overlay kvadrat iza teksta sa blur efektom */
+.hero-text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    z-index: -1;
+    transition: backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background-color 0.4s ease;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background-color: rgba(255,255,255,0); /* transparentno, blur će raditi */
+}
+
+.hero-text:hover::before {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.5); /* kvadrat iza teksta se zatamnjuje */
+}
+
+/* Tekst i dugme */
+.hero h1,
+.hero p,
+.hero .btn-primary {
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.cta-btn, .btn-primary {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #03f803;
+    color: #1a1d2e;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.cta-btn:hover, .btn-primary:hover {
+    background-color: #1d5f7b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Sekcija koja prelazi preko heroja */
+.overlap-section {
+    position: relative;
+    background-color: #1a1d2e;
+    margin-top: -100px; /* Preklapanje hero sekcije */
+    padding: 50px 20px;
+    z-index: 10;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+
+.preview {
+    padding: 40px 0;
+}
+
+.preview h2 {
+    text-align: center;
+    color: #03f803;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* centriranje */
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Ikonice u gornjem levom uglu */
+.card-icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.card h2 {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+/* Pozadine kartica */
+.statistics {
+    background-image: url("../pics/buttons/Statistics.png");
+}
+
+.charts {
+    background-image: url("../pics/buttons/Charts.png");
+}
+
+.prediction {
+    background-image: url("../pics/buttons/Diabetes.png");
+}
+
+.recipes {
+    background-image: url("../pics/buttons/Recipes.png");
+}
+
+/* Overlay da tekst ostane čitljiv */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+}
+
+/* ===================== NAVBAR ===================== */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26,29,46,0.95);
+    z-index: 100;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.top-nav.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.language-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center; /* Dodato za centralno poravnanje */
+    margin: 0 auto; /* Osigurava centriranje */
+    padding: 0; /* Uklanja default padding */
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #a2c2f2;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.menu li a:hover,
+.menu li a.active {
+    color: #4ecdc4;
+}
+
+/* Hamburger dugme */
+.hamburger {
+    display: none;
+    color: #4CAF50;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+/* ===================== CTA SEKCIJA ===================== */
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to right, #093d59, #1a1d2e);
+}
+
+.cta h2 {
+    color: #03f803;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.cta a {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #03f803;
+    color: #1a1d2e;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.cta a:hover {
+    background-color: #1d5f7b;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #072a3a;
+    color: #a2c2f2;
+}
+
+/* Responsive dizajn */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .cards-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #072a3a;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+    
+    .menu.open {
+        display: flex;
+    }
+    
+    .menu li a {
+        display: block;
+        padding: 10px 20px;
+        text-align: center;
+        color: #03f803;
+    }
+    
+    .menu li a:hover {
+        background-color: #1d5f7b;
+        color: #fff;
+    }
+    
+    .overlap-section {
+        margin-top: -50px;
+    }
+}
+/* ===================== DODACI ZA FUNKCIONALNOST ===================== */
+
+/* Stil za tabelu */
+#resultsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #072a3a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#resultsTable th, #resultsTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #1d5f7b;
+}
+
+#resultsTable th {
+    background-color: #093d59;
+    color: #03f803;
+    font-weight: bold;
+}
+
+#resultsTable tr:hover {
+    background-color: #093d59;
+}
+
+/* Stil za select za grafikone */
+#chart-select {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #093d59;
+    color: #a2c2f2;
+    border: 2px solid #1d5f7b;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#chart-select:focus {
+    outline: none;
+    border-color: #03f803;
+}
+
+/* Stil za grafikone */
+#chart-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #072a3a;
+    border-radius: 8px;
+}
+
+#chart-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Responsive tabela */
+@media (max-width: 768px) {
+    #resultsTable {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    #chart-select {
+        width: 90%;
+    }
+}
+
+/* Animacija za pojavljivanje navigacije */
+.top-nav {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Paralaks efekat za hero sekciju */
+.hero {
+    transition: background-position 0.3s ease-out;
+}

@@ -1,0 +1,98 @@
+/* ===================== STATISTICS PAGE STYLES ===================== */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Glavni kontejner za statistiku */
+.statistics-container {
+    max-width: 1000px;
+    margin: 80px auto 40px;
+    padding: 30px;
+    background-color: rgba(7, 42, 58, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Naslov stranice */
+.statistics-container h1 {
+    text-align: center;
+    color: #03f803;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Grid kontejner za statistike */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Pojedinačna statistička kartica */
+.stat-card {
+    background-color: #093d59;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #03f803;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(3, 248, 3, 0.2);
+}
+
+/* Naziv statistike */
+.stat-name {
+    font-weight: bold;
+    color: #4ecdc4;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Vrednost statistike */
+.stat-value {
+    color: #03f803;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Footer pozicioniranje */
+.footer {
+    margin-top: auto;
+}
+
+/* Responsive dizajn */
+@media (max-width: 768px) {
+    .statistics-container {
+        margin: 100px 20px 40px;
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .statistics-container h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-name {
+        font-size: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem;
+    }
+}
