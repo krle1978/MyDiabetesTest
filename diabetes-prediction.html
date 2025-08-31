@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predikcija Dijabetesa</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/diabetes-prediction.css">
+</head>
+<body>
+    <h1>Predikcija Dijabetesa</h1>
+
+    <!-- Navigacija -->
+    <nav class="top-nav">
+        <button class="hamburger">☰</button>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="charts.html">Charts</a></li>
+            <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+        </ul>
+        <img src="./pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon">
+    </nav>
+
+    <!-- Forma za unos podataka -->
+    <div class="prediction-container">
+        <h2>Unesite podatke za predikciju:</h2>
+        
+        <form id="diabetes-prediction-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="weight">Težina (kg):</label>
+                    <input type="number" id="weight" step="0.1" min="30" max="200" required placeholder="npr. 75">
+                    <div class="input-hint">Unesite vašu težinu u kilogramima</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Visina (cm):</label>
+                    <input type="number" id="height" step="0.1" min="100" max="220" required placeholder="npr. 175">
+                    <div class="input-hint">Unesite vašu visinu u centimetrima</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="GenHlth">Opšte zdravlje:</label>
+                    <select id="GenHlth" required>
+                        <option value="">Izaberite...</option>
+                        <option value="1">1 - Odlično</option>
+                        <option value="2">2 - Vrlo dobro</option>
+                        <option value="3">3 - Dobro</option>
+                        <option value="4">4 - Loše</option>
+                        <option value="5">5 - Veoma loše</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="HighBP">Visok krvni pritisak:</label>
+                    <select id="HighBP" required>
+                        <option value="">Izaberite...</option>
+                        <option value="0">Ne</option>
+                        <option value="1">Da</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="HighChol">Visok holesterol:</label>
+                    <select id="HighChol" required>
+                        <option value="">Izaberite...</option>
+                        <option value="0">Ne</option>
+                        <option value="1">Da</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="DiffWalk">Poteškoće sa hodanjem:</label>
+                    <select id="DiffWalk" required>
+                        <option value="">Izaberite...</option>
+                        <option value="0">Ne</option>
+                        <option value="1">Da</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="HeartDiseaseorAttack">Srčane bolesti/infarkt:</label>
+                    <select id="HeartDiseaseorAttack" required>
+                        <option value="">Izaberite...</option>
+                        <option value="0">Ne</option>
+                        <option value="1">Da</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bmi-display">
+                <strong>Vaš BMI: </strong>
+                <span id="bmi-value">-</span>
+                <span id="bmi-category"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="predict-button">🧠 Predvidi Rizik</button>
+                <button type="button" id="reset-button" class="reset-button">Resetuj</button>
+            </div>
+        </form>
+
+        <!-- Loading indicator -->
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Učitavam model i vršim predikciju...</p>
+        </div>
+
+        <!-- Rezultat -->
+        <div id="result" class="result-container">
+            <h3>Rezultat predikcije:</h3>
+            <div id="result-content"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
+    </footer>
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+
+    <!-- Skripte -->
+    <script src="js/script.js"></script>
+    <script src="js/diabetes-predictor.js"></script>
+    <script src="js/pacijent.js"></script>
+</body>
+<div id="model-status" 
+     style="margin:10px 0; padding:5px; border-radius:5px; font-weight:bold; text-align:center;">
+  <span id="status-text">Model: ❌ | Scaler: ❌</span>
+  <span id="status-loader" style="margin-left:5px;"></span>
+</div>
+
+</html>

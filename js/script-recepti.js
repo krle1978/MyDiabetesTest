@@ -1,358 +1,131 @@
-// JavaScript za prikazivanje recepta
-function showRecipe(recipe) {
-    let recipeText = document.getElementById("recipe-text");
+// Baza recepata
+const recipes = {
+    breakfast: {
+        "Zobena kaša sa voćem": `
+            <h3>Zobena kaša sa voćem</h3>
+            <p><b>Sastojci:</b> 50 g ovsenih pahuljica, 200 ml nemasnog mleka, 1 jabuka, cimet.</p>
+            <p><b>Priprema:</b> Ovsene pahuljice kuvati u mleku 5 minuta. Dodati narendanu jabuku i malo cimeta.</p>
+        `,
+        "Proteinski omlet": `
+            <h3>Proteinski omlet</h3>
+            <p><b>Sastojci:</b> 2 belanca + 1 celo jaje, spanać, paradajz, 1 kašičica maslinovog ulja.</p>
+            <p><b>Priprema:</b> Umutiti jaja i ispeći na ulju, dodati povrće.</p>
+        `,
+        "Integralni tost sa avokadom": `
+            <h3>Integralni tost sa avokadom</h3>
+            <p><b>Sastojci:</b> 2 kriške integralnog hleba, 1 avokado, malo limunovog soka.</p>
+            <p><b>Priprema:</b> Avokado izgnječiti i premazati po hlebu, dodati par kapi limuna.</p>
+        `,
+        "Grčki jogurt sa orasima": `
+            <h3>Grčki jogurt sa orasima</h3>
+            <p><b>Sastojci:</b> 150 g grčkog jogurta, 1 kašika mlevenih oraha, nekoliko borovnica.</p>
+            <p><b>Priprema:</b> Sve sastojke sjediniti i poslužiti hladno.</p>
+        `
+    },
+    lunch: {
+        "Piletina sa povrćem": `
+            <h3>Piletina sa povrćem</h3>
+            <p><b>Sastojci:</b> 150 g pilećih grudi, tikvica, paprika, šargarepa, maslinovo ulje.</p>
+            <p><b>Priprema:</b> Iseći povrće i dinstati sa piletinom 20 minuta.</p>
+        `,
+        "Pasulj salata": `
+            <h3>Pasulj salata</h3>
+            <p><b>Sastojci:</b> Kuvani pasulj, luk, paradajz, peršun, maslinovo ulje.</p>
+            <p><b>Priprema:</b> Sve sastojke pomešati i začiniti uljem.</p>
+        `,
+        "Riblji file na žaru": `
+            <h3>Riblji file na žaru</h3>
+            <p><b>Sastojci:</b> File lososa ili oslića, limun, maslinovo ulje.</p>
+            <p><b>Priprema:</b> Ispeći ribu na roštilju, poslužiti sa povrćem.</p>
+        `,
+        "Integralna testenina sa povrćem": `
+            <h3>Integralna testenina sa povrćem</h3>
+            <p><b>Sastojci:</b> Integralna testenina, brokoli, tikvica, maslinovo ulje.</p>
+            <p><b>Priprema:</b> Skuvati testeninu i pomešati sa povrćem na tiganju.</p>
+        `
+    },
+    dinner: {
+        "Supa od povrća": `
+            <h3>Supa od povrća</h3>
+            <p><b>Sastojci:</b> Šargarepa, tikvica, brokoli, celer, začini.</p>
+            <p><b>Priprema:</b> Povrće skuvati u vodi i začiniti po ukusu.</p>
+        `,
+        "Ćuretina sa salatom": `
+            <h3>Ćuretina sa salatom</h3>
+            <p><b>Sastojci:</b> 120 g ćurećih prsa, zelena salata, paradajz, maslinovo ulje.</p>
+            <p><b>Priprema:</b> Ispeći meso na tiganju i poslužiti sa svežom salatom.</p>
+        `,
+        "Tunjevina sa povrćem": `
+            <h3>Tunjevina sa povrćem</h3>
+            <p><b>Sastojci:</b> Konzerva tunjevine u sopstvenom soku, kukuruz, paradajz, krastavac.</p>
+            <p><b>Priprema:</b> Sve sastojke pomešati i začiniti maslinovim uljem.</p>
+        `,
+        "Pečene tikvice sa sirom": `
+            <h3>Pečene tikvice sa sirom</h3>
+            <p><b>Sastojci:</b> Tikvice, posni sir, peršun.</p>
+            <p><b>Priprema:</b> Tikvice preseći, napuniti sirom i peći 20 minuta.</p>
+        `
+    },
+    dessert: {
+        "Čia puding": `
+            <h3>Čia puding</h3>
+            <p><b>Sastojci:</b> 3 kašike čia semenki, 200 ml bademovog mleka, borovnice.</p>
+            <p><b>Priprema:</b> Ostaviti seme u mleku preko noći i poslužiti sa voćem.</p>
+        `,
+        "Kolač od šargarepe": `
+            <h3>Kolač od šargarepe</h3>
+            <p><b>Sastojci:</b> Rendana šargarepa, ovseno brašno, jaja, orašasti plodovi.</p>
+            <p><b>Priprema:</b> Sve sastojke sjediniti i peći 30 min na 180°C.</p>
+        `,
+        "Voćna salata": `
+            <h3>Voćna salata</h3>
+            <p><b>Sastojci:</b> Jabuka, kruška, borovnice, limunov sok.</p>
+            <p><b>Priprema:</b> Voće iseći na kockice i preliti limunovim sokom.</p>
+        `,
+        "Jogurt tortica": `
+            <h3>Jogurt tortica</h3>
+            <p><b>Sastojci:</b> Nemasni jogurt, želatin, maline, ovseni keks.</p>
+            <p><b>Priprema:</b> Umutiti jogurt sa želatinom, dodati voće i složiti preko keksa.</p>
+        `
+    }
+};
 
-    if (recipe === 'breakfast1') {
-        recipeText.innerHTML = `
-            <h2>Ovsena kaša sa bademima i borovnicama</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>50 g ovsenih pahuljica</li>
-                <li>200 ml bademovog mleka (ili običnog mleka)</li>
-                <li>1 kašika chia semena</li>
-                <li>1 šaka svežih borovnica</li>
-                <li>10-12 badema, grubo iseckanih</li>
-                <li>Prstohvat cimeta</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>U šerpicu sipajte ovsene pahuljice i bademovo mleko. Kuvajte na laganoj vatri uz stalno mešanje dok smesa ne postane kremasta (oko 5 minuta).</li>
-                <li>Sklonite sa šporeta, umešajte chia seme i prstohvat cimeta.</li>
-                <li>Prelijte kašu borovnicama i pospite seckanim bademima. Po želji dodajte malo stevije za zaslađivanje.</li>
-            </ol>
-        `;
-    }
-    else if (recipe === 'breakfast2') {
-        recipeText.innerHTML = `
-            <h2>Jaja sa povrćem</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>2 jaja</li>
-                <li>1/2 crvene paprike, isečene</li>
-                <li>1/2 šolje iseckanog spanaća</li>
-                <li>1/4 šolje iseckanih gljiva</li>
-                <li>So, biber po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>U tavi propržite povrće na malo maslinovog ulja dok ne omekša.</li>
-                <li>Ubacite umućena jaja i propržite dok se jaja ne skuvaju po vašoj želji.</li>
-                <li>Poslužite uz integralni hleb.</li>
-            </ol>
-        `;
-    }
-    else if (recipe === 'breakfast3') {
-        recipeText.innerHTML = `
-            <h2>Grčki jogurt sa chia semenkama i malinama</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>2 jaja</li>
-                <li>1/2 crvene paprike, isečene</li>
-                <li>1/2 šolje iseckanog spanaća</li>
-                <li>1/4 šolje iseckanih gljiva</li>
-                <li>So, biber po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>U tavi propržite povrće na malo maslinovog ulja dok ne omekša.</li>
-                <li>Ubacite umućena jaja i propržite dok se jaja ne skuvaju po vašoj želji.</li>
-                <li>Poslužite uz integralni hleb.</li>
-            </ol>
-        `;
-    }
-    else if (recipe === 'snack1') {
-        recipeText.innerHTML = `
-            <h2>Šaka orašastih plodova</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 šaka mešanih orašastih plodova (bademi, lešnici, orasi)</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Uzeti šaku orašastih plodova i konzumirati kao užinu.</li>
-                <li>Možete dodati malo morske soli ili cimet po želji.</li>
-            </ol>
-        `;
-    }
-    else if (recipe === 'snack2') {
-        recipeText.innerHTML = `
-            <h2>Sirova šargarepa ili celer sa humusom</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 šargarepa (ili celer), isečena na štapiće</li>
-                <li>3 kašike humusa</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Iseći šargarepu ili celer na štapiće.</li>
-                <li>Poslužiti uz humus za umakanje.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Niskokaloričan i bogat vlaknima.</p>
-        `;
-    }
-    else if (recipe === 'snack3') {
-        recipeText.innerHTML = `
-            <h2>Jedna jabuka sa kašikom kikiriki putera</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 jabuka, isečena na kriške</li>
-                <li>1 kašika kikiriki putera</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Iseći jabuku na kriške.</li>
-                <li>Svaku krišku premazati sa malo kikiriki putera.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Kombinacija vlakana i zdravih masti.</p>
-        `;
-    }
-    else if (recipe === 'lunch1') {
-        recipeText.innerHTML = `
-            <h2>Pečena piletina sa povrćem</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>150 g pilećeg filea</li>
-                <li>1 tikvica, sečena na kolutove</li>
-                <li>1 paprika, sečena na trakice</li>
-                <li>1 šaka brokolija</li>
-                <li>1 kašika maslinovog ulja</li>
-                <li>So, biber, beli luk u prahu, origano po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Zagrejte rernu na 200°C..</li>
-                <li>Piletinu začinite solju, biberom i belim lukom u prahu. Povrće pomešajte sa maslinovim uljem, solju i origanom.</li>
-                <li>Stavite piletinu i povrće na papir za pečenje. Pecite oko 20-25 minuta, dok piletina ne bude potpuno pečena, a povrće blago zapečeno.</li>
-                <li>Poslužite toplo uz salatu od rukole ili spanaća.</li>
-            </ol>
-            <p><strong>Napomena Piletinu začinite solju, biberom i belim lukom u prahu. Povrće pomešajte sa maslinovim uljem, solju i origanom.
-    `}
-    else if (recipe === 'lunch2') {
-        recipeText.innerHTML = `
-            <h2>Riblji file sa kvinojom</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>150 g ribljeg filea (losos, oslić ili pastrmka)</li>
-                <li>50 g kvinoje</li>
-                <li>1/2 šolje brokolija</li>
-                <li>1/2 šolje seckane tikvice</li>
-                <li>Sok od pola limuna</li>
-                <li>1 kašika maslinovog ulja</li>
-                <li>So, biber i začinsko bilje (timijan, bosiljak) po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Skuvajte kvinoju prema uputstvu sa pakovanja i ostavite je sa strane.</li>
-                <li>Riblji file začinite solju, biberom i limunovim sokom. Pecite na maslinovom ulju u tiganju ili rerni dok ne dobije zlatnu boju (oko 4-5 minuta sa svake strane).</li>
-                <li>Povrće kratko blanširajte (ili dinstajte na pari).</li>
-                <li>Poslužite ribu preko kvinoje i dodajte povrće sa strane.</li>
-            </ol>
-            
-    `}
-    else if (recipe === 'lunch3') {
-        recipeText.innerHTML = `
-            <h2>Sočivo ili pasulj čorba</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>200 g kuvanog belog ili crvenog pasulja</li>
-                <li>1 manji crni luk, sitno iseckan</li>
-                <li>1 šargarepa, seckana na kolutove</li>
-                <li>1 paradajz, iseckan ili kašika paradajz pirea</li>
-                <li>1 kašika maslinovog ulja</li>
-                <li>500 ml vode ili povrćnog bujona</li>
-                <li>So, biber, beli luk u prahu, origano po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>U šerpi zagrejte maslinovo ulje i propržite luk dok ne postane staklast. Dodajte šargarepu i dinstajte nekoliko minuta.</li>
-                <li>Ubacite paradajz i začine, pa sve prelijte bujonom ili vodom. Kuvajte na srednjoj vatri 10 minuta.</li>
-                <li>Dodajte kuvani pasulj i kuvajte još 5-10 minuta. Po potrebi dodajte još začina.</li>
-                <li>Poslužite toplu čorbu uz krišku integralnog hleba.</li>
-            </ol>
-            
-            `}
-    else if (recipe === 'snack2pm') {
-        recipeText.innerHTML = `
-            <h2>Avokado sa kriškom integralnog hleba</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1/2 zrelog avokada</li>
-                <li>1 kriška integralnog hleba</li>
-                <li>Prstohvat soli i bibera</li>
-                <li>Sok od limuna</li>
-                <li>Sveži začini (peršun, korijander ili bosiljak - opcionalno)</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Izgnječite avokado viljuškom i dodajte prstohvat soli, bibera i nekoliko kapi limunovog soka.</li>
-                <li>Namaz od avokada ravnomerno rasporedite po integralnom hlebu.</li>
-                <li>Po želji pospite svežim začinskim biljem i odmah poslužite.</li>
-            </ol>
-            
-    `}
-    else if (recipe === 'snack3pm') {
-        recipeText.innerHTML = `
-            <h2>Parče sira sa nekoliko oraha</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>Parče sira</li>
-                <li>Orasi</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Sameljite orahe</li>
-                <li>Ispasirajte sira sa mlevenim orasima.</li>
-                <li>Poslužite u zdeli.</li>
-            </ol>
-    `}
-    else if (recipe === 'snack4pm') {
-        recipeText.innerHTML = `
-            <h2>Smoothie od spanaća, krastavca, limuna i đumbira</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 šaka svežeg spanaća</li>
-                <li>1/2 krastavca</li>
-                <li>1 limun (samo sok)</li>
-                <li>1/2 šolje vode ili kokosove vode</li>
-                <li>Mali komadić đumbira</li>
-                <li>Malo stevije po ukusu</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Sve sastojke stavite u blender i blendajte dok ne dobijete glatku smesu.</li>
-                <li>Poslužite hladno, sa nekoliko kockica leda ako želite osvežavajući efekat.</li>
-            </ol>
-        `}
-    else if (recipe === 'dinner1') {
-        recipeText.innerHTML = `
-            <h2>Pečeni batat sa piletinom i salatom od rukole</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 veliki batat</li>
-                <li>200g pilećeg fileta</li>
-                <li>1 kašika maslinovog ulja</li>
-                <li>So i biber po ukusu</li>
-                <li>50g rukole</li>
-                <li>Sok od pola limuna</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Zagrejte rernu na 200°C. Operite batat, isecite ga na kriške i začinite maslinovim uljem, solju i biberom. Pecite na plehu obloženom papirom za pečenje 25-30 minuta</li>
-                <li>Pileći file začinite po ukusu i ispecite na gril tiganju ili roštilju dok ne postane zlatno smeđ.</li>
-                <li>U činiji pomešajte rukolu i sok od limuna.</li>
-                <li>Servirajte batat, piletinu i salatu zajedno.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Batat ima niži glikemijski indeks od krompira.</p>
-        `}
-        else if (recipe === 'dinner2') {
-            recipeText.innerHTML = `
-                <h2>Grilovani tofu sa povrćem na žaru</h2>
-                <p><strong>Sastojci:</strong></p>
-                <ul>
-                    <li>200g tofua</li>
-                    <li>1 tikvica</li>
-                    <li>1 crvena paprika</li>
-                    <li>1 šaka šampinjona</li>
-                    <li>1 kašika soja sosa</li>
-                    <li>1 kašika maslinovog ulja</li>
-                    <li>Prstohvat soli i bibera</li>
-                </ul>
-                <p><strong>Priprema:</strong></p>
-                <ol>
-                    <li>Prethodno iscedite tofu i iseckajte na komade veličine zalogaja.</li>
-                    <li>U posudi pomešajte soja sos, maslinovo ulje, so i biber. U ovoj mešavini marinirajte tofu 10-15 minuta.</li>
-                    <li>Povrće (tikvicu, crvenu papriku i šampinjone) iseckajte i prelijte sa malo maslinovog ulja i soli.</li>
-                    <li>Grilujte tofu i povrće na srednje jakoj vatri dok ne postanu zlatno smeđi i mekani.</li>
-                    <li>Poslužite tofu sa povrćem i uživajte!</li>
-                </ol>
-            `;
-        }
-    
-    else if (recipe === 'dinner3') {
-        recipeText.innerHTML = `
-            <h2>Pohovani patlidžan u rerni sa paradajz sosom i parmezanom</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>200g tofua</li>
-                <li>1 tikvica</li>
-                <li>1 crvena paprika</li>
-                <li>1 šaka šampinjona</li>
-                <li>1 kašika soja sosa</li>
-                <li>1 kašika maslinovog ulja</li>
-                <li>Prstohvat susama</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Tofu isecite na kriške i marinirajte u soja sosu 10-15 minuta.</li>
-                <li>Tikvicu, papriku i šampinjone isecite na komade i premažite maslinovim uljem.</li>
-                <li>Na gril tiganju ili roštilju ispecite tofu i povrće dok ne dobiju blago zlatnu boju.</li>
-                <li>Pospite susamom i servirajte toplo.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Zdravija verzija italijanskog jela.</p>
-        `}
-    else if (recipe === 'dessert1') {
-        recipeText.innerHTML = `
-            <h2>Čokoladni mousse od avokada</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>1 zreo avokado</li>
-                <li>50g crne čokolade (70% kakaa ili više)</li>
-                <li>1 kašika kakao praha</li>
-                <li>1 kašika meda ili stevije</li>
-                <li>1 kašičica ekstrakta vanile</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Otopite crnu čokoladu na pari ili u mikrotalasnoj.</li>
-                <li>U blenderu pomešajte avokado, otopljenu čokoladu, kakao prah, zaslađivač i vanilu dok ne dobijete glatku smesu.</li>
-                <li>Sipajte u čaše i ostavite u frižideru 1-2 sata pre serviranja.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Koristiti crnu čokoladu sa visokim procentom kakaa.</p>
-        `}
-    else if (recipe === 'dessert2') {
-        recipeText.innerHTML = `
-            <h2>Sveže bobičasto voće sa cimetom</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>Šaka borovnica</li>
-                <li>Šaka malina</li>
-                <li>Šaka jagoda (iseckanih)</li>
-                <li>Prstohvat cimeta</li>
-                <li>Po želji, malo grčkog jogurta</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Operite i osušite voće.</li>
-                <li>Pospite cimetom i, po želji, servirajte uz grčki jogurt.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Niskokalorično i bogato antioksidansima.</p>
-        `}
-    else if (recipe === 'dessert3') {
-        recipeText.innerHTML = `
-            <h2>Chia puding sa kokosovim mlekom</h2>
-            <p><strong>Sastojci:</strong></p>
-            <ul>
-                <li>3 kašike chia semenki</li>
-                <li>200ml kokosovog mleka</li>
-                <li>1 kašika stevije ili meda</li>
-                <li>Po želji, sveže voće za dekoraciju</li>
-            </ul>
-            <p><strong>Priprema:</strong></p>
-            <ol>
-                <li>Pomešajte chia semenke, kokosovo mleko i zaslađivač u činiji.</li>
-                <li>Ostavite u frižideru najmanje 4 sata (ili preko noći) dok smesa ne postane pudingasta.</li>
-                <li>Dekorišite voćem po želji pre serviranja.</li>
-            </ol>
-            <p><strong>Napomena:</strong> Pripremljen sa stevijom ili drugim prirodnim zaslađivačem.</p>
-        `}        
-}
+// DOM elementi
+const mealType = document.getElementById("meal-type");
+const mealRecipe = document.getElementById("meal-recipe");
+const recipeContent = document.getElementById("recipe-text");
 
-function toggleMenu() {
-    const menu = document.querySelector('.menu');
-    menu.classList.toggle('open'); // Dodaje/uklanja klasu "open"
-}
+// Kada se promeni tip obroka
+mealType.addEventListener("change", () => {
+    const type = mealType.value;
+    mealRecipe.innerHTML = `<option value="">-- Izaberi recept --</option>`;
+    mealRecipe.disabled = !type;
 
-document.getElementById("recipe-combo").addEventListener("change", function () {
-    const selectedRecipe = this.value; // Izabrani recept
-    showRecipe(selectedRecipe); // Pokreni funkciju za prikaz recepta
+    if (type && recipes[type]) {
+        Object.keys(recipes[type]).forEach(recipeName => {
+            const opt = document.createElement("option");
+            opt.value = recipeName;
+            opt.textContent = recipeName;
+            mealRecipe.appendChild(opt);
+        });
+    }
+});
+
+// Kada se izabere recept
+mealRecipe.addEventListener("change", () => {
+    const type = mealType.value;
+    const selected = mealRecipe.value;
+    if (type && selected && recipes[type][selected]) {
+        recipeContent.innerHTML = recipes[type][selected];
+    }
+});
+
+// Klik na karticu (sliku)
+document.querySelectorAll(".meal-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const type = card.dataset.meal;
+        mealType.value = type;
+        mealType.dispatchEvent(new Event("change"));
+        recipeContent.innerHTML = `<h2>Izaberite recept iz menija za ${type} 🍴</h2>`;
+    });
 });

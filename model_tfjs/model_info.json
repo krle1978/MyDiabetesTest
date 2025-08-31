@@ -1,0 +1,40 @@
+{
+  "features": [
+    "GenHlth",
+    "HighBP",
+    "BMI",
+    "BP_Chol_Risk",
+    "HighChol",
+    "DiffWalk",
+    "HeartDiseaseorAttack"
+  ],
+  "feature_descriptions": {
+    "GenHlth": "Op\u0161te zdravlje (1=odli\u010dno, 5=veoma lo\u0161e)",
+    "HighBP": "Visok krvni pritisak (1=da, 0=ne)",
+    "BMI": "Body Mass Index",
+    "BP_Chol_Risk": "Kombinovani rizik (HighBP * HighChol)",
+    "HighChol": "Visok holesterol (1=da, 0=ne)",
+    "DiffWalk": "Pote\u0161ko\u0107e sa hodanjem (1=da, 0=ne)",
+    "HeartDiseaseorAttack": "Sr\u010dane bolesti/infarkt (1=da, 0=ne)"
+  },
+  "scaling_params": {
+    "means": [
+      2.8659788216128157,
+      0.570151144899991,
+      29.969843424744322,
+      0.379799076839533,
+      0.5313241017286632,
+      0.25772468096660334,
+      0.15029414426644946
+    ],
+    "stds": [
+      1.1082565359453087,
+      0.49505435748937765,
+      7.156128038721287,
+      0.48533672648108095,
+      0.49901783600477884,
+      0.43738160659459135,
+      0.35735950311369236
+    ]
+  }
+}
