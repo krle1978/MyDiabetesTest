@@ -1,0 +1,115 @@
+.donations-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertikalno centriranje */
+  align-items: center;       /* horizontalno centriranje */
+  min-height: calc(100vh - 160px); /* izračunaj da forma stane između headera/nav i footera */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.donation-block {
+  margin: 20px 0;
+  padding: 20px;
+  background: #ffffff0d;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 600px;
+}
+
+.donations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.donate-btn, .copy-btn {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #4cafef;
+  color: white;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.donate-btn:hover, .copy-btn:hover {
+  background: #379bd6;
+}
+
+.crypto-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff10;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.crypto-option img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.donations-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertikalno centriranje */
+  align-items: center;       /* horizontalno centriranje */
+  min-height: calc(100vh - 160px); /* izračunaj da forma stane između headera/nav i footera */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.donation-block {
+  margin: 20px 0;
+  padding: 20px;
+  background: #ffffff0d;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 600px;
+}
+
+.donations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.donate-btn, .copy-btn {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #4cafef;
+  color: white;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.donate-btn:hover, .copy-btn:hover {
+  background: #379bd6;
+}
+
+.crypto-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff10;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.crypto-option img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}

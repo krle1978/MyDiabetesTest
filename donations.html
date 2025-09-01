@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donations</title>
+  <link rel="stylesheet" href="style.css"> <!-- global -->
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="donations.css"> <!-- lokalni stilovi -->
+</head>
+<body>
+  <header>
+    <h1>Support Our Project ❤️</h1>
+  </header>
+
+  <!-- Navigacija -->
+  <nav class="top-nav">
+    <button class="hamburger">☰</button>
+    <ul class="menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="charts.html">Charts</a></li>
+        <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="donations.html">Donations</a></li> <!-- ✅ Novo dodato -->
+    </ul>
+    <img src="pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
+    </nav>
+
+  <main class="donations-container">
+  <!-- Jednokratne donacije -->
+  <section class="donation-block">
+    <h2>One-time Donation</h2>
+    <div class="donations-grid">
+      <button class="donate-btn" data-once="paypal">PayPal</button>
+      <button class="donate-btn" data-once="stripe">Stripe</button>
+      <button class="donate-btn" data-once="coffee">☕ Buy Me a Coffee</button>
+    </div>
+  </section>
+
+  <!-- Mesečne donacije -->
+  <section class="donation-block">
+    <h2>Monthly Support</h2>
+    <div class="donations-grid">
+      <button class="donate-btn" data-monthly="5">€5</button>
+      <button class="donate-btn" data-monthly="10">€10</button>
+      <button class="donate-btn" data-monthly="20">€20</button>
+    </div>
+  </section>
+
+  <!-- Kripto -->
+  <section class="donation-block">
+    <h2>Crypto</h2>
+    <div class="donations-grid">
+      <div class="crypto-option">
+        <img src="pics/qr/btc.png" alt="BTC QR">
+        <p>
+          BTC: <span class="crypto-address" data-crypto="btc">3PRepewqAmnGW6uqWC3nhJpJVFmKBRdk7u</span>
+          <button class="copy-btn" data-copy="btc">Copy</button>
+        </p>
+      </div>
+      <div class="crypto-option">
+        <img src="pics/qr/eth.png" alt="ETH QR">
+        <p>
+          ETH: <span class="crypto-address" data-crypto="eth">0x1bB370570CC46aC9c9aE3d69c6BA15312df75083</span>
+          <button class="copy-btn" data-copy="eth">Copy</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bankovni transfer -->
+  <section class="donation-block">
+    <h2>Bank Transfer</h2>
+    <div class="bank-info">
+      <p>IBAN: <strong>RSXXXXXXXXXX</strong></p>
+      <p>SWIFT: <strong>YYYYYYYYY</strong></p>
+    </div>
+  </section>
+</main>
+
+
+  <footer>
+    <p>Thank you for supporting us 🙏</p>
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="donations.js"></script>
+</body>
+</html>

@@ -190,6 +190,9 @@ body {
     background-image: url("../pics/buttons/Recipes.png");
 }
 
+.donations {
+    background-image: url("../pics/buttons/Donations.png");
+}
 /* Overlay da tekst ostane čitljiv */
 .card::after {
     content: "";
