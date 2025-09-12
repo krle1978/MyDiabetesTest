@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predikcija Dijabetesa</title>
+    <title>Diabetes Prediction</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/diabetes-prediction.css">
 </head>
 <body>
-    <h1>Predikcija Dijabetesa</h1>
+    <h1>Diabetes Prediction</h1>
 
-    <!-- Navigacija -->
+    <!-- Navigation -->
     <nav class="top-nav">
         <button class="hamburger">☰</button>
         <ul class="menu">
@@ -24,94 +24,93 @@
         <img src="./pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon">
     </nav>
 
-    <!-- Forma za unos podataka -->
+    <!-- Prediction Form -->
     <div class="prediction-container">
-        <h2>Unesite podatke za predikciju:</h2>
+        <h2>Enter your data for prediction:</h2>
         
         <form id="diabetes-prediction-form">
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="weight">Težina (kg):</label>
-                    <input type="number" id="weight" step="0.1" min="30" max="200" required placeholder="npr. 75">
-                    <div class="input-hint">Unesite vašu težinu u kilogramima</div>
+                    <label for="age">Age (years)</label>
+                    <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" required>
+                    <span class="error-message" id="age-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" step="0.1" min="30" max="200" required placeholder="e.g. 75">
+                    <div class="input-hint">Enter your weight in kilograms</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="height">Visina (cm):</label>
-                    <input type="number" id="height" step="0.1" min="100" max="220" required placeholder="npr. 175">
-                    <div class="input-hint">Unesite vašu visinu u centimetrima</div>
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" step="0.1" min="100" max="220" required placeholder="e.g. 175">
+                    <div class="input-hint">Enter your height in centimeters</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="GenHlth">Opšte zdravlje:</label>
+                    <label for="GenHlth">General Health:</label>
                     <select id="GenHlth" required>
-                        <option value="">Izaberite...</option>
-                        <option value="1">1 - Odlično</option>
-                        <option value="2">2 - Vrlo dobro</option>
-                        <option value="3">3 - Dobro</option>
-                        <option value="4">4 - Loše</option>
-                        <option value="5">5 - Veoma loše</option>
+                        <option value="">Select...</option>
+                        <option value="1">1 - Excellent</option>
+                        <option value="2">2 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Poor</option>
+                        <option value="5">5 - Very Poor</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="HighBP">Visok krvni pritisak:</label>
+                    <label for="HighBP">High Blood Pressure:</label>
                     <select id="HighBP" required>
-                        <option value="">Izaberite...</option>
-                        <option value="0">Ne</option>
-                        <option value="1">Da</option>
+                        <option value="">Select...</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="HighChol">Visok holesterol:</label>
+                    <label for="HighChol">High Cholesterol:</label>
                     <select id="HighChol" required>
-                        <option value="">Izaberite...</option>
-                        <option value="0">Ne</option>
-                        <option value="1">Da</option>
+                        <option value="">Select...</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="DiffWalk">Poteškoće sa hodanjem:</label>
+                    <label for="DiffWalk">Difficulty Walking:</label>
                     <select id="DiffWalk" required>
-                        <option value="">Izaberite...</option>
-                        <option value="0">Ne</option>
-                        <option value="1">Da</option>
+                        <option value="">Select...</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="HeartDiseaseorAttack">Srčane bolesti/infarkt:</label>
+                    <label for="HeartDiseaseorAttack">Heart Disease / Heart Attack:</label>
                     <select id="HeartDiseaseorAttack" required>
-                        <option value="">Izaberite...</option>
-                        <option value="0">Ne</option>
-                        <option value="1">Da</option>
+                        <option value="">Select...</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
             </div>
 
             <div class="bmi-display">
-                <strong>Vaš BMI: </strong>
+                <strong>Your BMI: </strong>
                 <span id="bmi-value">-</span>
                 <span id="bmi-category"></span>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="predict-button">🧠 Predvidi Rizik</button>
-                <button type="button" id="reset-button" class="reset-button">Resetuj</button>
+                <button type="submit" class="predict-button">Predict</button>
+                <button type="button" id="reset-button" class="reset-button">Reset</button>
             </div>
         </form>
 
-        <!-- Loading indicator -->
-        <div id="loading" class="loading-container">
-            <div class="spinner"></div>
-            <p>Učitavam model i vršim predikciju...</p>
-        </div>
-
-        <!-- Rezultat -->
+        <!-- Result -->
         <div id="result" class="result-container">
-            <h3>Rezultat predikcije:</h3>
+            <h3>Prediction Result:</h3>
             <div id="result-content"></div>
         </div>
     </div>
@@ -120,18 +119,6 @@
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
 
-    <!-- TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
-
-    <!-- Skripte -->
-    <script src="js/script.js"></script>
-    <script src="js/diabetes-predictor.js"></script>
-    <script src="js/pacijent.js"></script>
+    <script src="js/diabetes-predictor-inline.js"></script>
 </body>
-<div id="model-status" 
-     style="margin:10px 0; padding:5px; border-radius:5px; font-weight:bold; text-align:center;">
-  <span id="status-text">Model: ❌ | Scaler: ❌</span>
-  <span id="status-loader" style="margin-left:5px;"></span>
-</div>
-
 </html>

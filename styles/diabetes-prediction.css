@@ -127,6 +127,7 @@
     background: rgba(9, 61, 89, 0.6);
     border-radius: 10px;
     display: none;
+    transition: all 0.3s ease;
 }
 
 .result-container h3 {
@@ -150,20 +151,25 @@
     font-weight: bold;
 }
 
+/* ===================== Progress Bar ===================== */
 .probability-bar {
+    width: 100%;
     height: 25px;
     background: #1d5f7b;
     border-radius: 12px;
     margin: 15px 0;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .probability-fill {
     height: 100%;
-    background: linear-gradient(90deg, #4CAF50, #ff9800, #ff4444);
-    transition: width 1s ease-in-out;
+    width: 0;
     border-radius: 12px;
+    background: linear-gradient(90deg, #4CAF50, #ff9800, #ff4444);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: width 1.5s ease-in-out;
 }
 
 .probability-labels {
@@ -174,11 +180,13 @@
     font-size: 12px;
 }
 
+/* Recommendations */
 .recommendations {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 8px;
     margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 .recommendations h4 {
@@ -247,3 +255,68 @@
         padding: 10px;
     }
 }
+
+.high-risk { color: red; font-weight: bold; }
+.low-risk { color: green; font-weight: bold; }
+
+/* ===================== CARD LINK BELOW PREDICTION ===================== */
+.result-container .cards-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* razmak između kartica */
+    flex-wrap: wrap; /* da se spakuju u sledeći red na malim ekranima */
+    margin-top: 20px;
+}
+
+.result-container .card.recipes,
+.result-container .card.fitnes,
+.result-container .card.donations {
+    display: inline-block;
+    text-decoration: none;
+    color: #03f803;
+    background: rgba(7, 42, 58, 0.85);
+    border-radius: 16px;
+    width: 180px;
+    height: 180px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+
+    /* Novi stil za slike */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* cela slika se vidi */
+}
+
+
+.result-container .card.recipes:hover,
+.result-container .card.fitnes:hover,
+.result-container .card.donations:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.result-container .card.recipes .card-icon,
+.result-container .card.fitnes .card-icon,
+.result-container .card.donations .card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.result-container .card.recipes h2,
+.result-container .card.fitnes h2,
+.result-container .card.donations h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+    color: #03f803;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+/* Pozadine kartica */
+.result-container .card.recipes { background-image: url("../pics/buttons/Recipes.png"); }
+.result-container .card.fitnes { background-image: url("../pics/buttons/Fitness.png"); }
+.result-container .card.donations { background-image: url("../pics/buttons/Donations.png"); }

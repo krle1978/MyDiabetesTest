@@ -3,7 +3,7 @@
 let model = null;
 let scaler = null;
 
-// --- Inicijalizacija modela i skalera sa fallback za InputLayer ---
+// --- Inicijalizacija modela i skalera ---
 async function initModel() {
   const statusText = document.getElementById("status-text");
   const statusLoader = document.getElementById("status-loader");
@@ -34,37 +34,14 @@ async function initModel() {
   updateStatus(false, false, "Učitavanje u toku...");
 
   try {
-    // --- Pokušaj direktnog učitavanja modela ---
-    try {
-      model = await tf.loadLayersModel("./model_tfjs/model.json");
-      console.log("✅ Model uspešno učitan direktno!");
-    } catch (err) {
-      console.warn("⚠️ Problem sa InputLayer, kreiram fallback model:", err);
-
-      // --- Fallback model ---
-      model = tf.sequential();
-      const nFeatures = 7; // Broj inputa
-
-      model.add(tf.layers.dense({ units: 32, activation: 'relu', inputShape: [nFeatures] }));
-      model.add(tf.layers.batchNormalization());
-      model.add(tf.layers.dropout({ rate: 0.3 }));
-      model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
-      model.add(tf.layers.dropout({ rate: 0.2 }));
-      model.add(tf.layers.dense({ units: 1, activation: 'sigmoid' }));
-
-      // Učitaj težine
-      await model.loadWeights("./model_tfjs/group1-shard1of1.bin");
-      console.log("✅ Fallback model kreiran i težine učitane!");
-    }
-
+    // --- Učitaj layers-model direktno ---
+    model = await tf.loadLayersModel("./model_tfjs/model.json");
     updateStatus(true, false, "Model učitan, scaler još nije učitan.");
 
     // --- Učitaj scaler ---
     const scalerResponse = await fetch("./model_tfjs/scaler.json");
     scaler = await scalerResponse.json();
-    console.log("✅ Scaler učitan:", scaler);
     updateStatus(true, true, "Model i scaler uspešno učitani!");
-
   } catch (err) {
     console.error("❌ Greška pri učitavanju modela/scalera:", err);
     updateStatus(false, false, "Greška pri učitavanju fajlova. Proveri putanje.");
@@ -110,9 +87,13 @@ document.getElementById("height").addEventListener("input", calculateBMI);
 
 // --- Reset forme ---
 document.getElementById("reset-button").addEventListener("click", () => {
+  const form = document.getElementById("diabetes-prediction-form");
+  if (form) form.reset();
+  
   document.getElementById("bmi-value").textContent = "-";
   document.getElementById("bmi-category").textContent = "";
   document.getElementById("result-content").innerHTML = "";
+  document.getElementById("result").style.display = "none";
 });
 
 // --- Funkcija za predikciju ---
@@ -145,22 +126,25 @@ async function predictDiabetes(event) {
       "HeartDiseaseorAttack": parseInt(document.getElementById("HeartDiseaseorAttack").value)
     };
 
-    const inputArray = scaler.feature_names.map(f => {
-      const idx = scaler.feature_names.indexOf(f);
-      return (inputFeatures[f] - scaler.mean[idx]) / scaler.scale[idx];
-    });
+    // --- Normalizacija ulaza ---
+    const inputArray = scaler.feature_names.map((f, idx) => (inputFeatures[f] - scaler.mean[idx]) / scaler.scale[idx]);
 
     const inputTensor = tf.tensor2d([inputArray]);
     const prediction = model.predict(inputTensor);
     const probability = (await prediction.data())[0];
 
     const resultContent = document.getElementById("result-content");
-    resultContent.innerHTML = `
-      <p><strong>Verovatnoća rizika od dijabetesa:</strong> ${(probability * 100).toFixed(2)}%</p>
-      <p style="color: ${probability > 0.5 ? "red" : "green"}">
-        ${probability > 0.5 ? "⚠️ Visok rizik" : "✅ Nizak rizik"}
-      </p>
-    `;
+    resultContent.innerHTML = "";
+    const p = document.createElement("p");
+    p.innerHTML = "<strong>Verovatnoća rizika od dijabetesa:</strong> " + (probability*100).toFixed(2) + "%";
+    resultContent.appendChild(p);
+
+    const p2 = document.createElement("p");
+    p2.style.color = probability > 0.5 ? "red" : "green";
+    p2.textContent = probability > 0.5 ? "⚠️ Visok rizik" : "✅ Nizak rizik";
+    resultContent.appendChild(p2);
+
+    document.getElementById("result").style.display = "block";
 
   } catch (err) {
     console.error("Greška prilikom predikcije:", err);
