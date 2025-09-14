@@ -24,7 +24,6 @@ body {
   align-items: center;
   background: url("../pics/HeroPic.png") no-repeat center center;
   background-size: cover;
-  background-attachment: fixed;
   text-align: center;
 }
 
@@ -287,17 +286,65 @@ body {
   color: #a2c2f2;
 }
 
-/* Responsive dizajn */
+/* ===================== Hamburger mobilni meni ===================== */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2rem; }
-  .hero p { font-size: 1.2rem; }
-  .cards-section { grid-template-columns: 1fr; }
-  .hamburger { display: block; }
-  .menu { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background-color: #072a3a; padding: 10px 0; z-index: 1000; }
-  .menu.open { display: flex; }
-  .menu li a { display: block; padding: 10px 20px; text-align: center; color: #03f803; }
-  .menu li a:hover { background-color: #1d5f7b; color: #fff; }
-  .overlap-section { margin-top: -50px; }
+  .hamburger {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateY(20px);
+    background-color: #03f803;
+    color: #1a1d2e;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  .menu_mobile {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    bottom: 90px; /* iznad hamburger dugmeta */
+    left: 0;
+    right: 0;
+    background-color: #072a3a;
+    padding: 15px 0;
+    gap: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    z-index: 1099;
+    visibility: hidden;
+    opacity: 0;
+    transition:transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menu_mobile.open {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .menu_mobile li a { 
+    display: block; 
+    padding: 12px; 
+    text-align: center; 
+    color: #03f803; 
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+
+  .menu_mobile li a:hover { 
+    background-color: #1d5f7b; 
+    color: #fff; 
+  }
 }
 
 /* ===================== DODACI ZA FUNKCIONALNOST ===================== */
@@ -321,3 +368,12 @@ body {
   font-size: 1rem;
 }
 #chart-container { width: 100%; max-width: 800px; margin: 0 auto; }
+
+/* HERO MOBILNA VERZIJA */
+@media (max-width: 768px) {
+  .hero {
+    background: url("../pics/HeroPicMobile.png") no-repeat center center;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}

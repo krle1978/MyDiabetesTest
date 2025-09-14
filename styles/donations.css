@@ -1,115 +1,286 @@
-.donations-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* vertikalno centriranje */
-  align-items: center;       /* horizontalno centriranje */
-  min-height: calc(100vh - 160px); /* izračunaj da forma stane između headera/nav i footera */
-  padding: 20px;
+/* === General === */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9fb;
+  color: #333;
+}
+
+/* === Progress Bar === */
+.progress-section {
   text-align: center;
-  box-sizing: border-box;
+  padding: 1rem 0;
+  background: #e0f7fa;
+  position: relative;  /* obavezno da nije absolute */
+  margin: 40px auto;   /* razmak od hero i main */
+  z-index: 2;          /* da bude iznad ako se nešto preklapa */
 }
-
-.donation-block {
-  margin: 20px 0;
-  padding: 20px;
-  background: #ffffff0d;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  width: 100%;
+.progress-section p {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+.progress-bar {
+  width: 80%;
   max-width: 600px;
+  height: 20px;
+  margin: 0 auto;
+  background: #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar .progress {
+  height: 100%;
+  background: #00b4d8;
+  width: 0%;
+  transition: width 1s ease-in-out;
 }
 
-.donations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
+/* === Hero Section === */
+.hero {
+  position: relative;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
 }
-
-.donate-btn, .copy-btn {
-  padding: 12px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #4cafef;
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  padding: 1rem;
+  background: rgba(0,0,0,0.4);
+  border-radius: 10px;
   color: white;
-  font-size: 16px;
-  transition: background 0.3s;
+}
+.hero-text h1 {
+  font-size: 1.8rem;
 }
 
-.donate-btn:hover, .copy-btn:hover {
-  background: #379bd6;
+/* === Top Navigation === */
+main.donations {
+  margin-top: 60px; /* napravi prostora od progress bara */
+  position: relative;
+  z-index: 1;
 }
 
-.crypto-option {
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(26,29,46,0.95);
+  transition: transform 0.3s ease;
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.main-nav li a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.main-nav li a:hover {
+  color: #00b4d8;
+}
+.main-nav li a.active {
+  color: #00ff00; /* matrix zelena */
+}
+
+/* === Donations Grid === */
+.donations {
+  margin-top: 0; /* ukloni overlap */
+  padding-top: 2rem; /* ili više, po želji */
+  position: relative;
+  z-index: 10;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background: #f9f9fb;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* === Cards === */
+.donation-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.donation-card h2 {
+  margin-top: 0;
+  color: #0077b6;
+}
+.monthly-card { background: #cce7ff; }
+.popular { background: #00b4d8; color: white; position: relative; }
+.popular .most-popular {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ffca3a;
+  color: black;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+/* === Buttons === */
+.donate-btn {
+  display: inline-block;
+  margin: .3rem;
+  padding: .7rem 1.2rem;
+  background: #0077b6;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.donate-btn:hover { background: #0096c7; }
+
+/* === Trust === */
+.trust {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff10;
-  padding: 10px;
-  border-radius: 8px;
 }
+.trust-icon { width: 30px; margin-bottom: 0.3rem; }
 
-.crypto-option img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
-}
-
-.donations-container {
+/* === Crypto === */
+.crypto {
   display: flex;
-  flex-direction: column;
-  justify-content: center;   /* vertikalno centriranje */
-  align-items: center;       /* horizontalno centriranje */
-  min-height: calc(100vh - 160px); /* izračunaj da forma stane između headera/nav i footera */
-  padding: 20px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.crypto div {
+  margin: 1rem;
   text-align: center;
-  box-sizing: border-box;
 }
-
-.donation-block {
-  margin: 20px 0;
-  padding: 20px;
-  background: #ffffff0d;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  width: 100%;
-  max-width: 600px;
+.qr {
+  width: 120px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
-
-.donations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.donate-btn, .copy-btn {
-  padding: 12px 16px;
+.copy-btn {
+  margin-top: .5rem;
+  padding: .5rem 1rem;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #4cafef;
+  border-radius: 6px;
+  background: #0077b6;
   color: white;
-  font-size: 16px;
-  transition: background 0.3s;
+  cursor: pointer;
 }
+.copy-btn:hover { background: #0096c7; }
 
-.donate-btn:hover, .copy-btn:hover {
-  background: #379bd6;
+/* === Bank Card === */
+.bank-card { background: #f0f0f0; }
+
+/* === Footer === */
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #072a3a;
+  color: #a2c2f2;
 }
+.site-footer a { color: #ffca3a; text-decoration: none; }
 
-.crypto-option {
-  display: flex;
-  flex-direction: column;
+/* === Hamburger === */
+.hamburger {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #03f803;
+  color: #1a1d2e;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  cursor: pointer;
+  justify-content: center;
   align-items: center;
-  background: #ffffff10;
-  padding: 10px;
-  border-radius: 8px;
+  z-index: 1100;
 }
 
-.crypto-option img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+/* === Mobile Menu === */
+.menu_mobile {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 90px;
+  left: 0;
+  right: 0;
+  background-color: #072a3a;
+  padding: 15px 0;
+  gap: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+  z-index: 1099;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.menu_mobile.open { display: flex; visibility: visible; opacity: 1; }
+.menu_mobile li a { display: block; padding: 12px; text-align: center; color: #03f803; text-decoration: none; font-weight: bold; }
+.menu_mobile li a:hover { background-color: #1d5f7b; color: white; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+}
+/* === Progress Section with Milestones === */
+.progress-wrapper {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.percent-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar .progress {
+  height: 100%;
+  background: #00ff00; /* matrix zelena */
+  width: 0%;
+  transition: width 0.3s linear;
 }

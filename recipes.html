@@ -6,39 +6,23 @@
     <title>Recepti za Dijabetes</title>
     <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo.jpg">
     <link rel="stylesheet" href="styles/recipes.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <h1>🍽️ Recepti za Dijabetes</h1>
 
     <!-- Navigacija -->
     <nav class="top-nav">
-        <button class="hamburger">☰</button>
-        <ul class="menu">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="statistics.html">Statistics</a></li>
-            <li><a href="charts.html">Charts</a></li>
-            <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>
-            <li><a href="recipes.html">Recipes</a></li>
-            <li><a href="donations.html">Donations</a></li> <!-- ✅ Novo dodato -->
-        </ul>
-        <img src="pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
+    <ul class="menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>      
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="donations.html">Donations</a></li>
+    </ul>
+        <img src="pics/diabetes_logo_1.png" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
     </nav>
-
-    <!-- Padajući meniji -->
-    <select id="meal-type" aria-label="Izaberite obrok">
-        <option value="">-- Izaberi obrok --</option>
-        <option value="breakfast">🥣 Breakfast</option>
-        <option value="lunch">🍲 Lunch</option>
-        <option value="dinner">🍛 Dinner</option>
-        <option value="dessert">🍰 Dessert</option>
-    </select>
-
-
-        <select id="meal-recipe" disabled aria-label="Izaberite recept">
-            <option value="">-- Izaberi recept --</option>
-        </select>
-
-    </div>
 
     <!-- Glavni deo sa slikama -->
     <div class="meal-gallery">
@@ -59,17 +43,46 @@
             <h3>Dessert</h3>
         </div>
     </div>
+    
+    <!-- Padajući meniji -->
+    <select id="meal-type" aria-label="Izaberite obrok">
+        <option value="">-- Choose a meal --</option>
+        <option value="breakfast">🥣 Breakfast</option>
+        <option value="lunch">🍲 Lunch</option>
+        <option value="dinner">🍛 Dinner</option>
+        <option value="dessert">🍰 Dessert</option>
+    </select>
+
+    <select id="meal-recipe" disabled aria-label="Izaberite recept">
+        <option value="">-- Choose a recipe --</option>
+    </select>
 
     <!-- Prikaz recepta -->
     <div id="recipe-content">
-        <h2>Izaberite obrok i recept</h2>
-        <div id="recipe-text">Kliknite na obrok ili koristite padajuće menije.</div>
+        <h2>Choose a meal and a recipe</h2>
+        <div id="recipe-text">Click on a meal or use the drop-down menus.</div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
 
+    <!-- Mobile hamburger dugme -->
+    <button class="hamburger">☰</button>
+
+    <!-- Mobile meni -->
+    <ul class="menu_mobile">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="charts.html">Charts</a></li>
+        <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="donations.html">Donations</a></li>
+    </ul>
+
+    <!-- Skripte -->
+    <script src="js/script.js"></script>
     <script src="js/script-recepti.js"></script>
 </body>
 </html>

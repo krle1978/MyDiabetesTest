@@ -13,15 +13,15 @@
 
     <!-- Navigation -->
     <nav class="top-nav">
-        <button class="hamburger">☰</button>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="statistics.html">Statistics</a></li>
-            <li><a href="charts.html">Charts</a></li>
-            <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
-            <li><a href="recipes.html">Recipes</a></li>
-        </ul>
-        <img src="./pics/diabetes_logo.jpg" alt="Language Switcher" class="language-icon">
+    <ul class="menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>      
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="donations.html">Donations</a></li>
+    </ul>
+        <img src="./pics/diabetes_logo_1.png" alt="Language Switcher" class="language-icon">
     </nav>
 
     <!-- Prediction Form -->
@@ -51,11 +51,11 @@
                     <label for="GenHlth">General Health:</label>
                     <select id="GenHlth" required>
                         <option value="">Select...</option>
-                        <option value="1">1 - Excellent</option>
-                        <option value="2">2 - Very Good</option>
-                        <option value="3">3 - Good</option>
-                        <option value="4">4 - Poor</option>
-                        <option value="5">5 - Very Poor</option>
+                        <option value="1">Excellent</option>
+                        <option value="2">Very Good</option>
+                        <option value="3">Good</option>
+                        <option value="4">Poor</option>
+                        <option value="5">Very Poor</option>
                     </select>
                 </div>
 
@@ -118,7 +118,19 @@
     <footer class="footer">
         &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
     </footer>
+    <!-- Mobile hamburger dugme -->
+    <button class="hamburger">☰</button>
 
-    <script src="js/diabetes-predictor-inline.js"></script>
+    <!-- Mobile meni -->
+    <ul class="menu_mobile">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="donations.html">Donations</a></li>
+    </ul>
+    <script src="js/script.js"></script>
+    <script src="js/diabetes-predictor-csv.js"></script>
 </body>
 </html>

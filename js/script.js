@@ -85,13 +85,9 @@ function updateChart() {
 
 // Hamburger meni
 function toggleMenu() {
-    try {
-        const menu = document.querySelector('.menu');
-        if (menu) {
-            menu.classList.toggle('open');
-        }
-    } catch (error) {
-        console.error('Greška pri toggle menija:', error);
+    const menu = document.querySelector('.menu_mobile');
+    if (menu) {
+        menu.classList.toggle('open');
     }
 }
 
@@ -103,10 +99,16 @@ function initApp() {
         loadData('initial');
     }
 
+    // Hamburger dugme
     const hamburgerButton = document.querySelector('.hamburger');
     if (hamburgerButton) {
         hamburgerButton.addEventListener('click', toggleMenu);
     }
+
+    // Sticky top-nav i ostale funkcije
+    initStickyNav();
+    initParallax();
+    initLanguageToggle();
 
     // Inicijalizacija grafikona ako postoji select
     const chartSelect = document.getElementById('chart-select');
@@ -117,18 +119,17 @@ function initApp() {
     }
 }
 
-// Sticky meni: pojavi se na hover vrha ili scroll-up
-(function() {
+// Sticky meni: pojavi se na hover vrha ili scroll-up (SAMO ZA DESKTOP)
+function initStickyNav() {
     const nav = document.querySelector('.top-nav');
     if (!nav) return;
-    
+
     let lastScrollY = window.scrollY;
 
-    // Funkcija za prikaz/skrivanje menija
     function updateNav() {
+        if (window.innerWidth <= 768) return; // deaktivirano na mobilnim uređajima
+
         const currentScrollY = window.scrollY;
-        
-        // Ako skrolujemo nagore ili smo na vrhu, prikaži meni
         if (currentScrollY < lastScrollY || currentScrollY < 50) {
             nav.classList.add('show');
         } else {
@@ -137,50 +138,58 @@ function initApp() {
         lastScrollY = currentScrollY;
     }
 
-    // Prikaz menija kad hoverujemo vrh ekrana
     document.addEventListener('mousemove', (e) => {
-        if (e.clientY < 50) { // gornjih 50px
-            nav.classList.add('show');
-        }
+        if (window.innerWidth <= 768) return;
+        if (e.clientY < 50) nav.classList.add('show');
     });
 
-    // Hide meni kad se mičemo izvan vrha
     document.addEventListener('mouseleave', (e) => {
-        if (e.clientY < 10) {
-            nav.classList.remove('show');
-        }
+        if (window.innerWidth <= 768) return;
+        if (e.clientY < 10) nav.classList.remove('show');
     });
 
     window.addEventListener('scroll', updateNav);
-})();
+}
 
 // Soft parallax efekat za hero pozadinu
-(function() {
+function initParallax() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
 
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
-        // Pomera pozadinu sporije od scroll-a (0.3 faktor)
         hero.style.backgroundPosition = `center ${scrollTop * 0.3}px`;
     });
-})();
+}
 
 // Jezički toggle (EN/SR)
+function initLanguageToggle() {
+    const languageIcon = document.querySelector('.language-icon');
+    if (!languageIcon) return;
+
+    languageIcon.addEventListener('click', toggleLanguage);
+}
+
 function toggleLanguage() {
     const title = document.querySelector("h1");
     if (!title) return;
 
-    if (title.innerText.includes("Diabetes")) {
+    if (title.innerText.includes("Diabetes") || title.innerText.includes("Recepti")) {
         // Srpski
-        title.innerText = "AI i Prevencija Dijabetesa";
-        document.querySelector('.hero p').innerText = "Veštačka inteligencija pomaže u otkrivanju faktora rizika, poboljšanju životnih navika i prevenciji dijabetesa pre nego što počne.";
-        document.querySelector('.btn-primary').innerText = "Proveri Moj Rizik";
+        if (title.innerText.includes("Diabetes")) title.innerText = "AI i Prevencija Dijabetesa";
+        if (title.innerText.includes("Recepti")) title.innerText = "🍽️ Recepti za Dijabetes";
+        const heroP = document.querySelector('.hero p');
+        if (heroP) heroP.innerText = "Veštačka inteligencija pomaže u otkrivanju faktora rizika, poboljšanju životnih navika i prevenciji dijabetesa pre nego što počne.";
+        const btn = document.querySelector('.btn-primary');
+        if (btn) btn.innerText = "Proveri Moj Rizik";
     } else {
         // Engleski
-        title.innerText = "AI & Diabetes Prevention";
-        document.querySelector('.hero p').innerText = "Artificial intelligence helps detect risk factors, improve lifestyle choices and prevent diabetes before it starts.";
-        document.querySelector('.btn-primary').innerText = "Predict My Diabetes";
+        if (title.innerText.includes("AI i Prevencija Dijabetesa")) title.innerText = "AI & Diabetes Prevention";
+        if (title.innerText.includes("🍽️ Recepti za Dijabetes")) title.innerText = "🍽️ Recipes for Diabetes";
+        const heroP = document.querySelector('.hero p');
+        if (heroP) heroP.innerText = "Artificial intelligence helps detect risk factors, improve lifestyle choices and prevent diabetes before it starts.";
+        const btn = document.querySelector('.btn-primary');
+        if (btn) btn.innerText = "Predict My Diabetes";
     }
 }
 

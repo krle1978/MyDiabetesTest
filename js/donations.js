@@ -1,32 +1,81 @@
-// Donacije – logika
+document.addEventListener("DOMContentLoaded", () => {
 
-// Dugmad za jednokratne/mesečne donacije
-document.querySelectorAll(".donate-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const once = btn.getAttribute("data-once");
-    const monthly = btn.getAttribute("data-monthly");
+  // === Progress Bar Animation with Milestones ===
+const progress = document.querySelector(".progress-bar .progress");
+let width = 0;
+const target = 64; // 64%
 
-    if (once) {
-      if (once === "paypal") window.open("https://paypal.me/yourlink", "_blank");
-      if (once === "stripe") window.open("https://your-stripe-link", "_blank");
-      if (once === "coffee") window.open("https://buymeacoffee.com/yourpage", "_blank");
-    }
+const interval = setInterval(() => {
+  if (width >= target) {
+    clearInterval(interval);
+  } else {
+    width++;
+    progress.style.width = width + "%";
+  }
+}, 20);
 
-    if (monthly) {
-      window.open(`https://your-stripe-subscription-link/${monthly}`, "_blank");
+
+  // === Hamburger Menu Toggle with Slide Animation ===
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.querySelector(".menu_mobile");
+
+  hamburger.addEventListener("click", () => {
+    if (mobileMenu.classList.contains("open")) {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px"; // start height
+      requestAnimationFrame(() => {
+        mobileMenu.style.maxHeight = "0";
+      });
+      mobileMenu.classList.remove("open");
+    } else {
+      mobileMenu.classList.add("open");
+      mobileMenu.style.maxHeight = "0";
+      requestAnimationFrame(() => {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+      });
     }
   });
-});
 
-// Kopiranje kripto adrese
-document.querySelectorAll(".copy-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const cryptoKey = btn.getAttribute("data-copy");
-    const addr = document.querySelector(`[data-crypto="${cryptoKey}"]`).textContent;
+  // Reset max-height after transition
+  mobileMenu.addEventListener("transitionend", () => {
+    if (!mobileMenu.classList.contains("open")) {
+      mobileMenu.style.maxHeight = "";
+    } else {
+      mobileMenu.style.maxHeight = ""; // da omogući normalno skaliranje
+    }
+  });
 
-    navigator.clipboard.writeText(addr).then(() => {
-      btn.textContent = "Copied!";
-      setTimeout(() => (btn.textContent = "Copy"), 2000);
+  // === Copy Buttons for Crypto ===
+  const copyButtons = document.querySelectorAll(".copy-btn");
+  copyButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const text = btn.getAttribute("data-copy");
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+      });
     });
   });
+
+  // === Top Nav Hide/Show on Scroll ===
+  const topNav = document.querySelector(".main-nav");
+  let lastScroll = 0;
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+      topNav.style.transform = "translateY(0)";
+      return;
+    }
+
+    if (currentScroll > lastScroll) {
+      // skroluje nadole → sakrij
+      topNav.style.transform = "translateY(-100%)";
+    } else {
+      // skroluje nagore → prikazi
+      topNav.style.transform = "translateY(0)";
+    }
+
+    lastScroll = currentScroll;
+  });
+
 });
