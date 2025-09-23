@@ -342,6 +342,10 @@ mealType.addEventListener("change", () => {
             mealRecipe.appendChild(opt);
         });
     }
+    // Scroll do menija i recepta
+    if (type) {
+        recipeContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
 // Kada se izabere recept
@@ -355,6 +359,8 @@ mealType.addEventListener("change", () => {
                     ${recipe.content}
                 `;
             }
+            // Scroll do recepta
+        recipeContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
 // Klik na karticu (sliku)
@@ -364,5 +370,8 @@ document.querySelectorAll(".meal-card").forEach(card => {
         mealType.value = type;
         mealType.dispatchEvent(new Event("change"));
         recipeContent.innerHTML = `<h2>Izaberite recept iz menija za ${type} 🍴</h2>`;
+
+        // Scroll do recepta nakon prikaza
+        recipeContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });

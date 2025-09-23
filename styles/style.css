@@ -7,18 +7,16 @@
 
 /* ===================== BODY ===================== */
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #1a1d2e;
-  color: #a2c2f2;
-  line-height: 1.6;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #093d59;
+  color: #d0f805;
 }
-
 /* ===================== HERO (Landing page) ===================== */
 .hero {
   position: relative;
   height: 100vh;
+  margin-top: 30px;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,47 +177,126 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
   z-index: 0;
 }
 
-/* ===================== NAVBAR ===================== */
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+/* ===================== NAVIGACIJA ===================== */
+
+.main-nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 60px;              /* visina navigacije */
   background: rgba(26,29,46,0.95);
+  display: flex;
+  justify-content: center;   /* centriraj meni */
+  align-items: center;       /* centriraj po visini */
   z-index: 100;
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.top-nav.show {
-  transform: translateY(0);
-  opacity: 1;
+.main-nav .menu li a {
+  text-decoration: none;
+  color: #a8c3f0;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.language-icon {
+.main-nav .menu li a.active,
+.main-nav .menu li a:hover {
+  color: #00ff66;
+  border-bottom: 2px solid #00ff66;
+}
+
+/* ======== LOGO ======== */
+.logo-icon {
   position: absolute;
-  top: 10px;
   right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40px;
   height: auto;
   cursor: pointer;
   z-index: 101;
 }
 
+/* ======== HAMBURGER ======== */
+.hamburger {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00ff66;
+  border: none;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1100;
+  transition: background 0.3s ease;
+}
+
+.hamburger:hover {
+  background: #00cc52;
+}
+
+/* ======== MOBILE MENU ======== */
+.menu_mobile {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 70px; /* iznad hamburgera */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #072a3a;
+  padding: 15px 0;
+  gap: 10px;
+  border-radius: 15px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+  z-index: 1099;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu_mobile.show {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu_mobile li {
+  list-style: none;
+}
+
+.menu_mobile li a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 20px;
+  display: block;
+  text-align: center;
+}
+
+.menu_mobile li a:hover {
+  background-color: #1d5f7b;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+}
+
+
 .menu {
   list-style: none;
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  
   margin: 0 auto;
   padding: 0;
 }
@@ -232,19 +309,226 @@ body {
 }
 
 .menu li a:hover, .menu li a.active {
-  color: #4ecdc4;
+  color: #03f803;
+  border-bottom: 2px solid #03f803;
+  padding-bottom: 5px;  
 }
 
-/* Hamburger dugme */
+/* ===================== HAMBURGER CENTERED ===================== */
+/* ===================== HAMBURGER ===================== */
 .hamburger {
-  display: none;
-  color: #4CAF50;
-  font-size: 2em;
-  background: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;                /* centriranje po sredini */
+  transform: translateX(-50%); /* precizno centriranje */
+  background: #00ff00;      /* matrix zelena */
+  color: #000;               /* kontrastna boja za znak */
   border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
-  margin: 0 auto;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.5); /* matrix senka */
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
+.hamburger:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 255, 0, 0.7);
+}
+
+
+@keyframes glow {
+  0%   { box-shadow: 0 0 5px #0f0; }
+  50%  { box-shadow: 0 0 15px #0f0, 0 0 25px #0f0; }
+  100% { box-shadow: 0 0 5px #0f0; }
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+}
+
+/* ===================== MOBILE MENI ===================== */
+/* === Mobile Menu - donations style fallback za recipes === */
+.menu_mobile {
+    position: fixed;
+    bottom: 90px;   
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #072a3a;
+    list-style: none;
+    margin: 0;
+    padding: 15px 0;
+    gap: 10px;
+    border-radius: 15px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+    max-height: 0;
+    z-index: 1099;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Kada je open, animacija max-height i fade-in */
+.menu_mobile.open {
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px; /* JS će podesiti scrollHeight */
+}
+
+/* Linkovi u meniju */
+.menu_mobile li a {
+    display: block;
+    text-align: center;
+    color: #03f803;  /* matrix zelena */
+    text-decoration: none;
+    padding: 12px;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.menu_mobile li a:hover {
+    background-color: #1d5f7b;
+    color: white;
+}
+
+/* ===================== EXPLORE SECTION ===================== */
+/* General section styling */
+.overlap-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 60px;
+  font-weight: 700;
+  color: #03f803;
+}
+
+/* Content blocks */
+.link-block {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 60px;
+  background-color: #ffffff;
+  border: 3px solid #03f803;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link-block:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.link-block.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Images */
+.block-image {
+  flex: 1;
+  min-height: 250px;
+  border-radius: 16px;
+  background-size: contain;      /* Proporcionalno skaliranje */
+  background-position: center;
+  background-repeat: no-repeat;  /* Ne ponavlja se slika */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.link-block:hover .block-image {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Text */
+.block-text {
+  flex: 2;
+  color: #1a1d2e;
+}
+
+.block-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.block-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* "More →" link */
+.more-link {
+  display: inline-block;
+  font-weight: bold;
+  color: #03f803;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.link-block:hover .more-link {
+  color: #1a1d2e;
+  transform: translateX(5px);
+}
+
+/* Specific images */
+.statistics {
+  background-image: url("../pics/buttons/Statistics.png");
+}
+
+.charts {
+  background-image: url("../pics/buttons/Charts.png");
+}
+
+.prediction {
+  background-image: url("../pics/buttons/Diabetes.png");
+}
+
+.recipes {
+  background-image: url("../pics/buttons/Recipes.png");
+}
+
+.donations {
+  background-image: url("../pics/buttons/Donations.png");
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .link-block,
+  .link-block.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .block-image {
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 20px;
+  }
+
+  .block-text {
+    flex: unset;
+  }
+}
+
 
 /* ===================== CTA SEKCIJA ===================== */
 .cta {
@@ -269,6 +553,12 @@ body {
   text-decoration: none;
   border-radius: 30px;
   transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .cta a:hover {
@@ -286,94 +576,20 @@ body {
   color: #a2c2f2;
 }
 
-/* ===================== Hamburger mobilni meni ===================== */
+/* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
+    .top-nav ul.menu {
+    display: none;
+  }
   .hamburger {
     display: flex;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateY(20px);
-    background-color: #03f803;
-    color: #1a1d2e;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    z-index: 1100;
-    cursor: pointer;
+    justify-content: center;
   }
-
-  .menu_mobile {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    bottom: 90px; /* iznad hamburger dugmeta */
-    left: 0;
-    right: 0;
-    background-color: #072a3a;
-    padding: 15px 0;
-    gap: 10px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-    z-index: 1099;
-    visibility: hidden;
-    opacity: 0;
-    transition:transform 0.3s ease, opacity 0.3s ease;
-  }
-
-  .menu_mobile.open {
-    display: flex;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .menu_mobile li a { 
-    display: block; 
-    padding: 12px; 
-    text-align: center; 
-    color: #03f803; 
-    font-size: 1.1rem;
-    text-decoration: none;
-  }
-
-  .menu_mobile li a:hover { 
-    background-color: #1d5f7b; 
-    color: #fff; 
-  }
-}
-
-/* ===================== DODACI ZA FUNKCIONALNOST ===================== */
-/* Stil za tabelu */
-#resultsTable { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #072a3a; border-radius: 8px; overflow: hidden; }
-#resultsTable th, #resultsTable td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #1d5f7b; }
-#resultsTable th { background-color: #093d59; color: #03f803; font-weight: bold; }
-#resultsTable tr:hover { background-color: #093d59; }
-
-/* Stil za select za grafikone */
-#chart-select {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 10px 15px;
-  background-color: #093d59;
-  color: #a2c2f2;
-  border: 2px solid #1d5f7b;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-#chart-container { width: 100%; max-width: 800px; margin: 0 auto; }
-
-/* HERO MOBILNA VERZIJA */
-@media (max-width: 768px) {
+  
   .hero {
-    background: url("../pics/HeroPicMobile.png") no-repeat center center;
-    background-size: cover;
-    background-attachment: scroll;
+  background: url("../pics/HeroPicMobile.png") no-repeat center center;
+  background-size: cover;
   }
 }
+

@@ -6,16 +6,29 @@ body {
     text-align: center;
 }
 
-h1 {
-    margin: 20px 0;
-    font-size: 2rem;
+/* ===================== NASLOVI ===================== */
+h1, h2, h3 {
     color: #2c3e50;
+    margin: 20px 0;
 }
 
-.top-nav {
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+/* ===================== NAVIGACIJA ===================== */
+/*.top-nav {
     background: #2c3e50;
     color: #fff;
-    padding: 10px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,22 +55,22 @@ h1 {
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
-}
+}*/
 
-/* Padajući meniji */
+/* ===================== PADAJUĆI MENIJI ===================== */
 .selectors {
     margin: 20px 0;
 }
 
 select {
     padding: 10px;
-    margin: 0 10px;
+    margin: 0 10px 20px 10px;
     font-size: 1rem;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
 
-/* Galerija obroka */
+/* ===================== GALERIJA OBROKA ===================== */
 .meal-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -88,9 +101,10 @@ select {
 
 .meal-card h3 {
     margin: 10px 0;
+    color: #2c3e50;
 }
 
-/* Recept */
+/* ===================== RECEPT ===================== */
 #recipe-content {
     margin: 30px auto;
     max-width: 800px;
@@ -99,33 +113,53 @@ select {
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
     text-align: left;
+    flex: 1; /* rastezljiv za footer */
 }
 
 #recipe-text {
     margin-top: 10px;
     line-height: 1.6;
+    color: #34495e;
 }
 
-/* Stil za sliku recepta - ravna po širini ekrana */
+/* ===================== SLIKA RECEPTA ===================== */
 .recipe-image {
-    width: 100vw; /* Širina cijelog viewporta */
-    max-width: 100%; /* Maksimalna širina 100% */
-    height: auto; /* Automatska visina za održavanje aspekta */
-    object-fit: cover; /* Pokriva prostor bez deformacije */
-    border-radius: 0; /* Bez zaobljenih uglova za punu širinu */
-    margin: 15px 0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: block;
-    margin-left: calc(-50vw + 50%); /* Centriranje na širokim ekranima */
-    margin-right: calc(-50vw + 50%);
+    width: 100vw;          /* zauzima celu širinu viewporta */
+    max-width: 100%;       /* ne prelazi širinu ekrana */
+    height: auto;          /* zadržava proporcije */
+    object-fit: cover;     
+    border-radius: 0;      
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    position: relative;    
+    left: 50%;             /* pozicioniranje centra */
+    transform: translateX(-50%); /* centriranje */
 }
 
-/* Dodatni stilovi za bolji izgled */
-#recipe-content {
-    overflow: hidden; /* Sprečava preklapanje */
+
+/* ===================== FOOTER ===================== */
+.footer {
+    margin-top: auto; /* guranje na dno */
+    padding: 15px;
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    flex-shrink: 0;
 }
 
-/* Responsive dizajn za manje ekrane */
+/* ===================== LINKOVI ===================== */
+a {
+    color: #03f803;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1a1d2e;
+}
+
+/* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
     .recipe-image {
         width: 100%;
@@ -133,12 +167,64 @@ select {
         margin-right: 0;
         border-radius: 8px;
     }
-        
-/* Footer */
-.footer {
-    margin-top: 50px;
-    padding: 15px;
-    background: #2c3e50;
-    color: white;
+
+    .meal-gallery {
+        grid-template-columns: 1fr;
+    }
 }
+
+/* ===================== HERO SEKCIJA ===================== */
+.hero {
+  background: url("../pics/recipes/hero.jpg") no-repeat center center/cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* ===================== GALERIJA ===================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* ===================== RECEPT KARTICE ===================== */
+.recipe-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-card h3 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.recipe-card p {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.4;
 }

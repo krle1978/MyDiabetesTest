@@ -9,8 +9,7 @@
 </head>
 <body>
   <!-- Navigacija -->
-  <nav class="top-nav">
-    <!-- Desktop meni -->
+  <nav class="main-nav">
     <ul class="menu">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>      
@@ -19,9 +18,7 @@
       <li><a href="recipes.html">Recipes</a></li>
       <li><a href="donations.html">Donations</a></li>
     </ul>
-
-    <!-- Jezički toggle -->
-    <img src="pics/diabetes_logo_1.png" alt="Language Switcher" class="language-icon" onclick="toggleLanguage()">
+    
   </nav>
 
   <!-- Hero sekcija -->
@@ -35,54 +32,94 @@
 
   <!-- Sekcija koja prelazi preko heroja -->
   <section class="overlap-section">
-    <!-- Preview kartice -->
-    <section class="preview">
-      <h2>Explore the Platform</h2>
-      
-      <section class="cards-section">
-        <a href="statistics.html" class="card statistics">
-          <img src="pics/icons/statistics.svg" alt="Statistics Icon" class="card-icon">
-          <h2>Statistics</h2>
-        </a>
+    <h2 class="section-title">Explore the Platform</h2>
 
-        <a href="charts.html" class="card charts">
-          <img src="pics/icons/charts.svg" alt="Charts Icon" class="card-icon">
-          <h2>Charts</h2>
-        </a>
+    <!-- Diabetes Prediction Test -->
+    <a href="diabetes-prediction.html" class="content-block link-block">
+      <div class="block-image prediction"></div>
+      <div class="block-text">
+        <h2>Diabetes Prediction Test</h2>
+        <p>
+          Take our quick diabetes prediction test to evaluate your health risks.
+          Input a few personal health details and get an instant assessment of
+          your likelihood of having diabetes.
+        </p>
+        <span class="more-link">More →</span>
+      </div>
+    </a>
 
-        <a href="diabetes-prediction.html" class="card prediction">
-          <img src="pics/icons/prediction.svg" alt="Prediction Icon" class="card-icon">
-          <h2>Diabetes Prediction Test</h2>
-        </a>
+    <!-- Statistics -->
+    <a href="statistics.html" class="content-block link-block reverse">
+      <div class="block-image statistics"></div>
+      <div class="block-text">
+        <h2>Statistics</h2>
+        <p>
+          Explore detailed statistics from our trained dataset, including patient age
+          distribution, glucose levels, BMI values, and outcomes. These insights help
+          you better understand the patterns and risk factors behind diabetes.
+        </p>
+        <span class="more-link">More →</span>
+      </div>
+    </a>
 
-        <a href="recipes.html" class="card recipes">
-          <img src="pics/icons/recipes.svg" alt="Recipes Icon" class="card-icon">
-          <h2>Recipes</h2>
-        </a>
+    <!-- Charts -->
+    <a href="charts.html" class="content-block link-block">
+      <div class="block-image charts"></div>
+      <div class="block-text">
+        <h2>Charts</h2>
+        <p>
+          Visualize data through interactive charts that make trends clear and easy
+          to interpret. Discover correlations, risk categories, and patterns in
+          diabetes-related health factors.
+        </p>
+        <span class="more-link">More →</span>
+      </div>
+    </a>
 
-        <a href="donations.html" class="card donations">
-          <img src="pics/icons/donations.svg" alt="Donations Icon" class="card-icon">
-          <h2>Donations</h2>
-        </a>
-      </section>
-    </section>
+    <!-- Recipes -->
+    <a href="recipes.html" class="content-block link-block reverse">
+      <div class="block-image recipes"></div>
+      <div class="block-text">
+        <h2>Recipes</h2>
+        <p>
+          Browse healthy, diabetes-friendly recipes designed to maintain stable
+          blood sugar levels. Discover meals that are tasty, nutritious, and
+          supportive of a preventive lifestyle.
+        </p>
+        <span class="more-link">More →</span>
+      </div>
+    </a>
 
-    <!-- CTA sekcija -->
-    <section class="cta">
-      <h2>Take control of your health today</h2>
-      <a href="diabetes-prediction.html">Start Your Test</a>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš</p>
-    </footer>
+    <!-- Donations -->
+    <a href="donations.html" class="content-block link-block">
+      <div class="block-image donations"></div>
+      <div class="block-text">
+        <h2>Donations</h2>
+        <p>
+          Support our mission by donating. Even a small contribution that may be
+          insignificant to you means a lot for maintaining this platform and
+          continuing our fight against diabetes.
+        </p>
+        <span class="more-link">More →</span>
+      </div>
+    </a>
   </section>
 
-  <!-- Mobile hamburger dugme -->
+  <!-- CTA sekcija -->
+  <section class="cta">
+    <h2>Take control of your health today</h2>
+    <a href="diabetes-prediction.html">Start Your Test</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš</p>
+  </footer>
+
+ <!-- Hamburger Button -->
   <button class="hamburger">☰</button>
 
-  <!-- Mobile meni -->
+  <!-- Mobile Menu -->
   <ul class="menu_mobile">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="diabetes-prediction.html">Diabetes Prediction</a></li>
@@ -92,6 +129,7 @@
       <li><a href="donations.html">Donations</a></li>
   </ul>
 
-  <script src="./js/script.js"></script>
+  <!-- Novi unified JS -->
+  <script src="./js/index_nav.js"></script>
 </body>
 </html>

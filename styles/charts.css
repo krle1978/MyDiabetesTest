@@ -1,17 +1,29 @@
+/* ===================== MAIN-NAV SCROLL TOGGLE ===================== */
+.main-nav.hide {
+  transform: translateY(-100%);
+}
+.main-nav.show {
+  transform: translateY(0);
+}
+
+/* ===================== CENTRIRANJE SADRŽAJA ISPOD MAIN-NAV ===================== */
+h1, h2,
+.chart-select-container,
+.chart-subselect-container,
+#chart-container {
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Globalni wrapper za padding sa leve i desne strane */
 .wrapper {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-/* Ili alternativno, dodati padding direktno body elementu */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1d2e;
-    color: #a2c2f2;
-    margin: 0;
-    padding: 0 20px; /* Dodato horizontalno odstojanje */
-}
 
 .profile {
     display: flex;

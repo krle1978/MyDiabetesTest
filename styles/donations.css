@@ -8,13 +8,11 @@ body {
 
 /* === Progress Bar === */
 .progress-section {
-  text-align: center;
-  padding: 1rem 0;
-  background: #e0f7fa;
-  position: relative;  /* obavezno da nije absolute */
-  margin: 40px auto;   /* razmak od hero i main */
-  z-index: 2;          /* da bude iznad ako se nešto preklapa */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .progress-section p {
   margin: 0 0 0.5rem 0;
   font-weight: bold;
@@ -97,7 +95,19 @@ main.donations {
 }
 .main-nav li a.active {
   color: #00ff00; /* matrix zelena */
+  text-decoration: underline;  
 }
+
+.logo-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+  z-index: 101;
+}
+
 
 /* === Donations Grid === */
 .donations {
@@ -111,6 +121,7 @@ main.donations {
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center; /* centrira sadržaj svake ćelije */  
   gap: 1.5rem;
 }
 
@@ -163,8 +174,9 @@ main.donations {
 /* === Crypto === */
 .crypto {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem; /* da ne budu previše zbijeni */  
 }
 .crypto div {
   margin: 1rem;
@@ -199,23 +211,39 @@ main.donations {
 .site-footer a { color: #ffca3a; text-decoration: none; }
 
 /* === Hamburger === */
+/* ===================== HAMBURGER ===================== */
+/* === Hamburger === */
 .hamburger {
-  display: none;
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #03f803;
-  color: #1a1d2e;
+  background: #00ff00;      /* matrix zelena */
+  color: #000;
   border: none;
   border-radius: 50%;
+  font-size: 28px;
   width: 60px;
   height: 60px;
-  font-size: 2rem;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
   z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 255, 0, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hamburger:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 255, 0, 0.7);
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #000; /* kontrast linija hamburgera */
+  margin: 3px 0;
 }
 
 /* === Mobile Menu === */
@@ -223,23 +251,40 @@ main.donations {
   display: none;
   flex-direction: column;
   position: fixed;
-  bottom: 90px;
-  left: 0;
-  right: 0;
+  bottom: 90px;   /* iznad hamburgera */
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #072a3a;
   padding: 15px 0;
   gap: 10px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: 15px;
   box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
   z-index: 1099;
   visibility: hidden;
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.menu_mobile.open { display: flex; visibility: visible; opacity: 1; }
-.menu_mobile li a { display: block; padding: 12px; text-align: center; color: #03f803; text-decoration: none; font-weight: bold; }
-.menu_mobile li a:hover { background-color: #1d5f7b; color: white; }
+
+.menu_mobile.open {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu_mobile li a {
+  display: block;
+  padding: 12px;
+  text-align: center;
+  color: #03f803;  /* matrix zelena */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu_mobile li a:hover {
+  background-color: #1d5f7b;
+  color: white;
+}
+
 
 /* === Responsive === */
 @media (max-width: 768px) {
