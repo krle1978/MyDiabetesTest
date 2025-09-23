@@ -329,3 +329,16 @@ main.donations {
   width: 0%;
   transition: width 0.3s linear;
 }
+
+.paypal-donate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.paypal-donate p {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #0077b6; /* možeš menjati u zelenu ako hoćeš */
+}

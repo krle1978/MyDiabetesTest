@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Support Us - Donations</title>
+  <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo_1.png">  
   <link rel="stylesheet" href="styles/donations.css">
 </head>
 <body>
@@ -60,9 +61,18 @@
       <h2>Monthly Support</h2>
       <p>Become a monthly supporter and help us grow steadily 🙌</p>
       <div class="btn-group">
-        <a href="#" class="donate-btn">€5 / mo</a>
-        <a href="#" class="donate-btn popular">€10 / mo <span class="most-popular">Most popular</span></a>
-        <a href="#" class="donate-btn">€20 / mo</a>
+        <div class="paypal-donate">
+          <p>Donate €5</p>
+          <div id="paypal-button-container-5"></div>
+        </div>
+        <div class="paypal-donate">
+          <p>Donate €10</p>
+          <div id="paypal-button-container-10"></div>
+        </div>
+        <div class="paypal-donate">
+          <p>Donate €20</p>
+          <div id="paypal-button-container-20"></div>
+        </div>
       </div>
       <div class="trust">
         <img src="pics/donations/secure-icon.png" alt="Secure Payment" class="trust-icon">
@@ -120,5 +130,6 @@
   </ul>
 
   <script src="js/donations.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AfeSNpvMy3l1VAOQl8Jxp3_3Bad_PKoshj1eCajG1AqGQGrtnFOODuD-zDZ8wyA9Qh4xmzxUYs0CTAXN&currency=EUR"></script>
 </body>
 </html>

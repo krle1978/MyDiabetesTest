@@ -78,4 +78,39 @@ const interval = setInterval(() => {
     lastScroll = currentScroll;
   });
 
+    // === PayPal Buttons ===
+  function renderPayPalButton(containerId, amount) {
+      paypal.Buttons({
+        style: {
+          shape: 'pill',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'donate'
+        },
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: amount.toString(),
+                currency_code: 'EUR'
+              },
+              description: "Donation of €" + amount
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            window.location.href = "thankyou.html?amount=" + amount + "&name=" + encodeURIComponent(details.payer.name.given_name);
+          });
+        },
+        onError: function(err) {
+          console.error(err);
+          alert("Došlo je do greške pri obradi donacije.");
+        }
+      }).render(containerId);
+    }
+
+    renderPayPalButton('#paypal-button-container-5', 5);
+    renderPayPalButton('#paypal-button-container-10', 10);
+    renderPayPalButton('#paypal-button-container-20', 20);
 });
