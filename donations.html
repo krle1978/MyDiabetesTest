@@ -100,12 +100,28 @@
 
     <!-- Bank Transfer -->
     <section class="donation-card bank-card">
-      <h2>Bank Transfer</h2>
-      <p>If you prefer direct donation:</p>
+      <h2>Bank Transfer (EUR)</h2>
+      <p>You can donate directly via international bank transfer:</p>
       <ul>
-        <li><strong>IBAN:</strong> RS3516XXXXXXXXXXXXXXXX78</li>
-        <li><strong>SWIFT:</strong> DBDBRSBG</li>
+        <li><strong>Beneficiary:</strong> Rade Krstić</li>
+        <li title="Legal confidentiality – full address not publicly disclosed">
+          <strong>Address:</strong> &lt;street address&gt;, Novi Sad, Serbia
+        </li>
+        <li>
+          <strong>IBAN:</strong> RS35325934170593551847
+          <button class="copy-btn" data-copy="RS35325934170593551847">Copy</button>
+        </li>
+        <li><strong>Bank:</strong> OTP BANKA SRBIJA</li>
+        <li><strong>SWIFT (OTP):</strong> OTPVRS22</li>
+        <li><strong>Intermediary Bank:</strong> Commerzbank AG, Frankfurt am Main</li>
+        <li><strong>SWIFT (Intermediary):</strong> COBADEFF</li>
       </ul>
+
+      <!-- QR Code sa iznosom 10€ -->
+      <div class="qr-box">
+        <img src="pics/donations/bank_transfer_qr_10eur.png" alt="Bank Transfer QR" class="qr" />
+        <p><strong>Scan to donate <span style="color:#e11d48;">10€</span> via SEPA transfer</strong></p>
+      </div>
     </section>
 
   </main>
@@ -114,6 +130,7 @@
   <footer class="site-footer">
     <p>🙏 Thank you for supporting us! Together we can make a difference.</p>
     <p>We are a non-profit project | <a href="mailto:krstic.rade@gmail.com">Contact us</a></p>
+    <p>&copy; 2025 - Rade Krstić, MSc of Information Technology and Systems</p>
   </footer>
 
   <!-- Hamburger Button -->
@@ -128,7 +145,6 @@
     <li><a href="recipes.html">Recipes</a></li>
     <li><a href="donations.html" class="active">Donations</a></li>
   </ul>
-
   <script src="js/donations.js"></script>
   <script src="https://www.paypal.com/sdk/js?client-id=AfeSNpvMy3l1VAOQl8Jxp3_3Bad_PKoshj1eCajG1AqGQGrtnFOODuD-zDZ8wyA9Qh4xmzxUYs0CTAXN&currency=EUR"></script>
 </body>

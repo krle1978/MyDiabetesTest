@@ -342,3 +342,25 @@ main.donations {
   margin-bottom: 0.5rem;
   color: #0077b6; /* možeš menjati u zelenu ako hoćeš */
 }
+
+/* === QR kod box === */
+.qr-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.qr-box img.qr {
+  width: 220px;
+  height: 220px;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.qr-box p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #0f172a;
+}
