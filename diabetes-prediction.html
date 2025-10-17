@@ -1,152 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo_1.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetes Prediction</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/diabetes-prediction.css">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="./pics/diabetes_logo_1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Prediction</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/diabetes-prediction.css">
 </head>
 <body>
-    <h1>Diabetes Prediction</h1>
+  <h1>Diabetes Prediction</h1>
 
-   <!-- Navigation -->
-    <nav class="main-nav">
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
-            <li><a href="statistics.html">Statistics</a></li>
-            <li><a href="charts.html">Charts</a></li>
-            <li><a href="recipes.html">Recipes</a></li>
-            <li><a href="donations.html">Donations</a></li>
-        </ul>
-        
-    </nav>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="donations.html">Donations</a></li>
+    </ul>
+  </nav>
 
-    <!-- Prediction Form -->
-    <div class="prediction-container">
+  <!-- Prediction Form -->
+  <div class="prediction-container">
     <h2>Enter your data for prediction:</h2>
 
     <form id="diabetes-prediction-form">
-        
-    <!-- Sekcija 1: Age, Weight, Height -->
-    <div class="form-section">
-        <div class="form-group wide-input">
-            <label for="age">Age (years)</label>
-            <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" required>
-            <span class="error-message" id="age-error"></span>
-        </div>
-        <div class="form-group wide-input">
-            <label for="weight">Weight (kg):</label>
-            <input type="number" id="weight" name="weight" step="0.1" min="30" max="200" required placeholder="e.g. 75">
-            <div class="input-hint">Enter your weight in kilograms</div>
-        </div>
-        <div class="form-group wide-input">
-            <label for="height">Height (cm):</label>
-            <input type="number" id="height" name="height" step="0.1" min="100" max="220" required placeholder="e.g. 175">
-            <div class="input-hint">Enter your height in centimeters</div>
-        </div>
-    </div>
 
-    <!-- Sekcija 2: General Health, High BP, High Cholesterol -->
-    <div class="form-section group-1">
-        <div class="form-group short-input">
+      <!-- Sekcija 1: Age, Weight, Height -->
+      <div class="form-section">
+        <div class="form-group wide-input">
+          <label for="age">Age (years):</label>
+          <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" required>
+          <span class="error-message" id="age-error"></span>
+        </div>
+        <div class="form-group wide-input">
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" name="weight" step="0.1" min="30" max="200" required placeholder="e.g. 75">
+          <div class="input-hint">Enter your weight in kilograms</div>
+        </div>
+        <div class="form-group wide-input">
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" name="height" step="0.1" min="100" max="220" required placeholder="e.g. 175">
+          <div class="input-hint">Enter your height in centimeters</div>
+        </div>
+      </div>
+
+      <!-- Simple prediction fields -->
+      <div id="simple-fields">
+        <div class="form-section group-1">
+          <div class="form-group short-input">
             <label for="GenHlth">General Health:</label>
-            <select id="GenHlth" name="GenHlth" required>
-                <option value="">Select...</option>
-                <option value="1">Excellent</option>
-                <option value="2">Very Good</option>
-                <option value="3">Good</option>
-                <option value="4">Poor</option>
-                <option value="5">Very Poor</option>
+            <select id="GenHlth" name="GenHlth">
+              <option value="">Select...</option>
+              <option value="1">Excellent</option>
+              <option value="2">Very Good</option>
+              <option value="3">Good</option>
+              <option value="4">Poor</option>
+              <option value="5">Very Poor</option>
             </select>
-        </div>
-        <div class="form-group short-input">
+          </div>
+          <div class="form-group short-input">
             <label for="HighBP">High Blood Pressure:</label>
-            <select id="HighBP" name="HighBP" required>
-                <option value="">Select...</option>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+            <select id="HighBP" name="HighBP">
+              <option value="">Select...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
-        </div>
-        <div class="form-group short-input">
+          </div>
+          <div class="form-group short-input">
             <label for="HighChol">High Cholesterol:</label>
-            <select id="HighChol" name="HighChol" required>
-                <option value="">Select...</option>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+            <select id="HighChol" name="HighChol">
+              <option value="">Select...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
+          </div>
         </div>
-    </div>
 
-    <!-- Sekcija 3: Difficulty Walking, Heart Disease, Smoking -->
-    <div class="form-section group-2">
-        <div class="form-group short-input">
+        <div class="form-section group-2">
+          <div class="form-group short-input">
             <label for="DiffWalk">Difficulty Walking:</label>
-            <select id="DiffWalk" name="DiffWalk" required>
-                <option value="">Select...</option>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+            <select id="DiffWalk" name="DiffWalk">
+              <option value="">Select...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
-        </div>
-        <div class="form-group short-input">
+          </div>
+          <div class="form-group short-input">
             <label for="HeartDiseaseorAttack">Heart Disease / Heart Attack:</label>
-            <select id="HeartDiseaseorAttack" name="HeartDiseaseorAttack" required>
-                <option value="">Select...</option>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+            <select id="HeartDiseaseorAttack" name="HeartDiseaseorAttack">
+              <option value="">Select...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
-        </div>
-        <div class="form-group short-input">
+          </div>
+          <div class="form-group short-input">
             <label for="Smoking">Smoking:</label>
-            <select id="Smoking" name="Smoking" required>
-                <option value="">Select...</option>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+            <select id="Smoking" name="Smoking">
+              <option value="">Select...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- BMI Display -->
-    <div class="bmi-display">
+      <!-- Advanced prediction fields -->
+      <div id="advanced-fields" style="display:none;">
+        <div class="form-section">
+          <div class="form-group short-input">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+              <option value="">Select...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="form-group short-input">
+            <label for="SmokingHistory">Smoking History:</label>
+            <select id="SmokingHistory" name="SmokingHistory">
+              <option value="">Select...</option>
+              <option value="never">Never</option>
+              <option value="current">Current</option>
+              <option value="former">Former</option>
+            </select>
+          </div>
+          <div class="form-group short-input">
+            <label for="HbA1c">HbA1c level (%):</label>
+            <input type="number" id="HbA1c" step="0.1" min="3" max="15" placeholder="e.g. 5.7">
+          </div>
+          <div class="form-group short-input">
+            <label for="Glucose">Blood Glucose (mg/dL):</label>
+            <input type="number" id="Glucose" step="0.1" min="50" max="500" placeholder="e.g. 120">
+          </div>
+        </div>
+      </div>
+
+      <!-- BMI Display -->
+      <div class="bmi-display">
         <strong>Your BMI: </strong>
         <span id="bmi-value">-</span>
         <span id="bmi-category"></span>
-    </div>
+      </div>
 
-    <!-- Buttons -->
-    <div class="form-actions">
+      <!-- Buttons -->
+      <div class="form-actions">
         <button type="submit" id="predict-button" class="predict-button">Predict</button>
+        <button type="button" id="scenario-button" class="predict-button">Advanced Prediction</button>
         <button type="button" id="reset-button" class="reset-button">Reset</button>
+      </div>
+    </form>
+
+    <div id="result" style="display:none;">
+      <div id="result-content"></div>
     </div>
+  </div>
 
-</form>
-<div id="result" style="display:none;">
-<div id="result-content"></div>
-</div>
+  <footer class="footer">
+    &copy; 2025 - Rade Krstić ITS 09/23 - ATVSS Niš
+  </footer>
 
-</div>
+  <!-- Hamburger Button -->
+  <button class="hamburger">☰</button>
 
-    <footer class="footer">
-        &copy; 2025 - Rade Krstić,MSc of Information Technology and Systems
-    </footer>
+  <!-- Mobile Menu -->
+  <ul class="menu_mobile">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
+    <li><a href="statistics.html">Statistics</a></li>
+    <li><a href="charts.html">Charts</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="donations.html">Donations</a></li>
+  </ul>
 
-    <!-- Hamburger Button -->
-    <button class="hamburger">☰</button>
-
-    <!-- Mobile Menu -->
-    <ul class="menu_mobile">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="diabetes-prediction.html" class="active">Diabetes Prediction</a></li>
-        <li><a href="statistics.html">Statistics</a></li>
-        <li><a href="charts.html">Charts</a></li>
-        <li><a href="recipes.html">Recipes</a></li>
-        <li><a href="donations.html">Donations</a></li>
-    </ul>
-
-    <!-- Scripts -->
-    <script src="js/index_nav.js"></script>
-    <script src="js/diabetes-predictor-csv.js"></script>
+  <!-- Scripts -->
+  <script src="js/index_nav.js"></script>
+  <script src="js/diabetes-predictor-csv.js"></script>
 </body>
 </html>

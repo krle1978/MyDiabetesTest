@@ -3,9 +3,31 @@
     max-width: 900px;
     margin: 100px auto 50px;
     padding: 30px;
-    background: rgba(7, 42, 58, 0.8);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    /* 🔹 Pozadinska slika */
+    background-image: url("../pics/backdround/background_diabetes_prediction.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* 🔹 Lagani overlay radi čitljivosti */
+    position: relative;
+    overflow: hidden;
+}
+
+.prediction-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 42, 58, 0.85); /* lagani tamni sloj preko slike */
+    z-index: 0;
+}
+
+.prediction-container > * {
+    position: relative;
+    z-index: 1;
 }
 
 .prediction-container h2 {
@@ -72,6 +94,11 @@
 .wide-input select {
     width: 100%;
 }
+
+.form-section.group-3 {
+    gap: 15px;
+}
+
 
 /* ===================== FORM ACTIONS ===================== */
 .form-actions {
@@ -272,8 +299,29 @@
     justify-content: center;
 }
 
+.card.exercises {
+  max-height: 380px; /* ili koliko ti treba */
+  overflow: hidden;
+  display: flex;
+}
+
+.card.exercises .card-right {
+  flex: 2;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 100%;
+}
+
+.card.exercises:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .card {
     display: flex;
+    cursor: pointer;
     width: 550px;
     border: 2px solid #03f803;
     border-radius: 12px;
@@ -312,6 +360,7 @@
 }
 
 .card-right h2 {
+    display: block !important;
     margin: 0 0 10px 0;
     color: #03f803;
 }
@@ -324,13 +373,62 @@
 
 /* Exercises card posebnosti */
 .exercises .exercise-content {
-    margin-top: 10px;
-    color: #fff;
-    font-size: 0.9rem;
-    max-height: 200px;
-    overflow-y: auto;
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  cursor: default;
+  pointer-events: auto; /* ✅ osigurava da miš može kliknuti */
+  position: relative;   /* ako se koristi ::before u parentu */
+  z-index: 10;           /* osigurava da nije ispod nevidljivog sloja */
 }
 
+.card-link-btn {
+  display: block !important;
+  margin-top: 15px;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 100;        /* Postavi vrlo visok sloj */
+  pointer-events: auto; /* Osiguraj da link može da prima klik */
+  background-color: #03f803;
+  color: #1a1d2e;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-link-btn:hover {
+  background-color: #1d5f7b;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.exercises .exercise-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.exercises .exercise-content::-webkit-scrollbar-thumb {
+  background-color: rgba(3, 248, 3, 0.6);
+  border-radius: 10px;
+}
+
+.exercises .exercise-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fitness-list {
+  padding-left: 20px;
+  margin-top: 10px;
+  color: #a2c2f2;
+  font-size: 0.95rem;
+}
+
+.fitness-list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
 
 .result-container .cards-row {
     display: flex;

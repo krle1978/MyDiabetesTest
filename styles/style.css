@@ -15,7 +15,9 @@ body {
 
 /* ===================== HERO (Landing page) ===================== */
 .hero {
-  position: relative;
+  position: sticky;
+  top: 0px;
+  animation: fadeInSticky 1s ease-in;
   height: 100vh;
   margin-top: 30px;  
   display: flex;
@@ -93,7 +95,10 @@ body {
 /* Sekcija koja prelazi preko heroja */
 .overlap-section {
   position: relative;
-  background-color: #1a1d2e;
+  background-image: url("../pics/backdround/background_home_page.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin-top: -100px;
   padding: 50px 20px;
   z-index: 10;
